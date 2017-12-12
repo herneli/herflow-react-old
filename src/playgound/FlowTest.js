@@ -164,31 +164,33 @@ class FlowTesst extends Component {
   }
 
   render() {
-    let activityCondition = { type: "Condition", name: "Esto es una tearea de test para ver si funciona bien" };
+    let activityTask = { type: "Task", name: "Esto es una tearea de test para ver si funciona bien" };
+    let activityInitial = { type: "Initial", name: "Inicio" };
+    let activityFinal = { type: "Final", name: "Final" };
     return (
       <div className="flow-container" ref={(div) => { this.root = div }}>
         <table className="flow">
           <tbody>
             <tr>
-              <td><Activity ref2={a => { this.activityA = a; }} activity={activityCondition} /></td>
+              <td><Activity ref2={a => { this.activityA = a; }} activity={activityInitial} /></td>
             </tr>
             <tr>
               <td>
                 <table className="flow">
                   <tbody>
                     <tr>
-                      <td><Activity ref2={a => { this.activityBA = a; }} activity={activityCondition} /></td>
+                      <td><Activity ref2={a => { this.activityBA = a; }} activity={activityTask} /></td>
                       <td>
                         <table className="flow">
                           <tbody>
                             <tr>
-                              <td><Activity ref2={a => { this.activityBBA = a; }} activity={activityCondition} /></td>
+                              <td><Activity ref2={a => { this.activityBBA = a; }} activity={activityTask} /></td>
                             </tr>
                             <tr>
-                              <td><Activity ref2={a => { this.activityBBB = a; }} activity={activityCondition} /></td>
+                              <td><Activity ref2={a => { this.activityBBB = a; }} activity={activityTask} /></td>
                             </tr>
                             <tr>
-                              <td><Activity ref2={a => { this.activityBBC = a; }} activity={activityCondition} /></td>
+                              <td><Activity ref2={a => { this.activityBBC = a; }} activity={activityTask} /></td>
                             </tr>
                           </tbody>
                         </table>
@@ -198,14 +200,14 @@ class FlowTesst extends Component {
                         <table className="flow">
                           <tbody>
                             <tr>
-                              <td><Activity ref2={a => { this.activityBCA = a; }} activity={activityCondition} /></td>
+                              <td><Activity ref2={a => { this.activityBCA = a; }} activity={activityTask} /></td>
                             </tr>
                             <tr>
                               <td>
                                 <table className="flow">
                                   <tbody>
                                     <tr>
-                                      <td><Activity ref2={a => { this.activityXA = a; }} activity={activityCondition} /></td>
+                                      <td><Activity ref2={a => { this.activityXA = a; }} activity={activityTask} /></td>
                                     </tr>
                                     <tr>
                                       <td>
@@ -223,7 +225,7 @@ class FlowTesst extends Component {
                                                     </tr>                                                    
                                                     <tr>
                                                       <td>
-                                                        <Activity ref2={a => { this.activityXBA = a; }} activity={activityCondition} />
+                                                        <Activity ref2={a => { this.activityXBA = a; }} activity={activityTask} />
                                                       </td>
                                                     </tr>
                                                   </tbody>
@@ -238,13 +240,13 @@ class FlowTesst extends Component {
                                                       </td>
                                                     </tr>                                                    
                                                     <tr>
-                                                      <td><Activity ref2={a => { this.activityXBBA = a; }} activity={activityCondition} /></td>
+                                                      <td><Activity ref2={a => { this.activityXBBA = a; }} activity={activityTask} /></td>
                                                     </tr>
                                                     <tr>
-                                                      <td><Activity ref2={a => { this.activityXBBB = a; }} activity={activityCondition} /></td>
+                                                      <td><Activity ref2={a => { this.activityXBBB = a; }} activity={activityTask} /></td>
                                                     </tr>
                                                     <tr>
-                                                      <td><Activity ref2={a => { this.activityXBBC = a; }} activity={activityCondition} /></td>
+                                                      <td><Activity ref2={a => { this.activityXBBC = a; }} activity={activityTask} /></td>
                                                     </tr>
                                                   </tbody>
                                                 </table>
@@ -259,10 +261,10 @@ class FlowTesst extends Component {
                                                         </td>
                                                     </tr>                                                    
                                                     <tr>
-                                                      <td><Activity ref2={a => { this.activityXBCA = a; }} activity={activityCondition} /></td>
+                                                      <td><Activity ref2={a => { this.activityXBCA = a; }} activity={activityTask} /></td>
                                                     </tr>
                                                     <tr>
-                                                      <td><Activity ref2={a => { this.activityXBCB = a; }} activity={activityCondition} /></td>
+                                                      <td><Activity ref2={a => { this.activityXBCB = a; }} activity={activityTask} /></td>
                                                     </tr>
                                                   </tbody>
                                                 </table>
@@ -273,14 +275,14 @@ class FlowTesst extends Component {
                                                   <tbody>
                                                   <tr>
                                                       <td>
-                                                      <div className="hf-label" ref={lab => {this.labelD = lab}}>Etiqueta C</div>
+                                                      <div className="hf-label" ref={lab => {this.labelD = lab}}>Etiqueta D</div>
                                                         </td>
                                                     </tr>                                                    
                                                     <tr>
-                                                      <td><Activity ref2={a => { this.activityXBDA = a; }} activity={activityCondition} /></td>
+                                                      <td><Activity ref2={a => { this.activityXBDA = a; }} activity={activityTask} /></td>
                                                     </tr>
                                                     <tr>
-                                                      <td><Activity ref2={a => { this.activityXBDB = a; }} activity={activityCondition} /></td>
+                                                      <td><Activity ref2={a => { this.activityXBDB = a; }} activity={activityTask} /></td>
                                                     </tr>
                                                   </tbody>
                                                 </table>                                                
@@ -291,7 +293,7 @@ class FlowTesst extends Component {
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td><Activity ref2={a => { this.activityXC = a; }} activity={activityCondition} /></td>
+                                      <td><Activity ref2={a => { this.activityXC = a; }} activity={activityTask} /></td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -307,7 +309,7 @@ class FlowTesst extends Component {
               </td>
             </tr>
             <tr>
-              <td><Activity ref2={a => { this.activityC = a; }} activity={activityCondition} /></td>
+              <td><Activity ref2={a => { this.activityC = a; }} activity={activityFinal} /></td>
             </tr>
           </tbody>
         </table>
