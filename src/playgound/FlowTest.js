@@ -220,7 +220,7 @@ class FlowTesst extends Component {
                                                   <tbody>
                                                   <tr>
                                                       <td>
-                                                        <div className="hf-label" ref={lab => {this.labelA = lab}}>Etiqueta</div>
+                                                        <div className="hf-label" ref={lab => {this.labelA = lab}}>Esto es una etiqueta bastante larga par ver como se comporta al cambiar de linea </div>
                                                       </td>
                                                     </tr>                                                    
                                                     <tr>
