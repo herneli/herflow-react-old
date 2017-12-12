@@ -1,0 +1,87 @@
+.hf-activity {
+  width: 200px;
+  height: 32px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0),0 2px 4px rgba(0,0,0,.12);
+  margin: 20px;
+  display: inline-block;
+}
+
+.hf-activity-icon {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+  width: 32px;
+  height: 32px;
+  margin: 0px;
+  padding: 0px;
+  float: left;
+}
+
+.hf-activity-description {
+  width: 144x;
+  padding: 3px 3px;
+  margin-left: 32px;
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.hf-activity-status {
+  height: 32px;
+  width: 6px;
+  position: absolute;
+  right: -6px;
+  top: 0px;
+}
+
+.hf-activity-closed {
+  background-color: #009900;
+}
+
+.hf-activity-started {
+  background-color: #ffcc00;
+}
+
+.hf-activity-cancelled {
+  background-color: #cc3300;
+}
+
+.hf-activity-initial .hf-activity-icon{
+  background: #ffffff url("images/activity-initial-32.png") no-repeat;
+}
+
+.hf-activity-final .hf-activity-icon{
+  background: #ffffff url("images/activity-final-32.png") no-repeat;
+}
+
+.hf-activity-task .hf-activity-icon{
+  background: #ffffff url("images/activity-task-32.png") no-repeat;
+}
+
+.hf-activity-condition .hf-activity-icon{
+  background: #ffffff url("images/activity-condition-32.png") no-repeat;
+}
+
+
+.hf-activity-automatic .hf-activity-icon{
+  background: #ffffff url("images/activity-automatic-32.png") no-repeat;
+}
+
+
+.hf-activity-email .hf-activity-icon{
+  background: #ffffff url("images/activity-email-32.png") no-repeat;
+}
+
+.hf-activity-subworkflow .hf-activity-icon{
+  background: #ffffff url("images/activity-subworkflow-32.png") no-repeat;
+}
+
+.hf-label{
+  background-color: #b1b0b0;
+  color: #ffffff;
+  border-radius: 4px;
+  margin: 0 20px;
+  padding: 3px 2px;
+  font-size: 12px;
+}
