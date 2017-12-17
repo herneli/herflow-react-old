@@ -1,11 +1,15 @@
+//Initial,Final,Task,Approval,Email,Branch,Switch,Sequence,Condition,Loop
 const ActivityType = {
   Initial: "Initial",
   Final: "Final",
   Task: "Task",
-  Condition: "Condition",
-  Automatic: "Automatic",
+  Approval: "Approval",
   Email: "Email",
-  Subworkflow: "Subworkflow"
+  Branch: "Branch",
+  Switch: "Switch",
+  Sequence: "Sequence",
+  Condition: "Condition",
+  Loop: "Loop"
 }
 
 export default ActivityType;

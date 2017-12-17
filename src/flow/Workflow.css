@@ -1,0 +1,20 @@
+table.hf-workflow{
+  border-collapse: separate;
+  border-spacing: 0px;
+  background-color: #f1eeee;
+}
+
+td{
+  vertical-align: top;
+  text-align: center;
+  padding: 0px;
+  border-spacing: 0px;
+}
+tr{
+  padding: 0px;
+  border-spacing: 0px;
+}
+
+#workflow-canvas{
+  position: relative;
+}
