@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Workflow.css';
 import Activity from './Activity';
-import {repaintEverything} from './connectionManager';
+import {getJsPlumbInstance, createConnections} from './connectionManager';
 
 class Workflow extends Component {
+  jsPlumbInstance = null;
   componentDidMount() {
-    repaintEverything();
+    this.jsPlumbInstance = getJsPlumbInstance();
+    createConnections(this.jsPlumbInstance,this.props.workflow.mainActivity);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    this.jsPlumbInstance.reset();
+    createConnections(this.jsPlumbInstance,this.props.workflow.mainActivity);
   }
   
   render() {

@@ -1,11 +1,11 @@
-//Initial,Final,Task,Approval,Email,Branch,Switch,Sequence,Condition,Loop
+//Initial,Final,Task,Approval,Email,Parallel,Switch,Sequence,Condition,Loop
 const ActivityType = {
   Initial: "Initial",
   Final: "Final",
   Task: "Task",
   Approval: "Approval",
   Email: "Email",
-  Branch: "Branch",
+  Parallel: "Parallel",
   Switch: "Switch",
   Sequence: "Sequence",
   Condition: "Condition",

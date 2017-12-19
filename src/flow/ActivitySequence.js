@@ -1,33 +1,9 @@
 import React, { Component } from 'react';
 import Activity from './Activity';
 import ActivityLabel from './ActivityLabel';
-import {connect} from './connectionManager';
 
 class ActivitySequence extends Component {
-  anchors = [];
-  componentDidMount() {
-    let initialAnchor;
-    let finalAnchor;
-    this.anchors.forEach((anchor,index) => {
-      // Calculate initial anchor
-      if (index === 0){
-        initialAnchor = anchor.initial;
-      // Calculate final anchor
-      } else if (index === this.anchors.length - 1){
-        finalAnchor = anchor.final;
-      }
-      // Connect intermediate anchors
-      if (index < this.anchors.length - 1){
-        console.log("Anchor",anchor.final,this.anchors[index + 1].initial);
-        connect(anchor.final,this.anchors[index + 1].initial);
-      }
-    });
-
-    // Call ´refAnchors´ callback
-    this.props.refAnchors && this.props.refAnchors({initial: initialAnchor,final: finalAnchor});
-  }
-  
-  getChildrenActivities(){
+    getChildrenActivities(){
     return this.props.activity.childrenActivities || [];
   }
   renderChildrenActivities(){
@@ -36,11 +12,7 @@ class ActivitySequence extends Component {
       return (
         <tr key={activity._id}>
           <td>
-            <Activity 
-              activity={activity} 
-              refAnchors={(anchor) => {
-                this.anchors.push(anchor);
-              }}/>
+            <Activity activity={activity} />
           </td>
         </tr>
       );
@@ -55,9 +27,7 @@ class ActivitySequence extends Component {
           {
             this.props.activity.label ? 
             <tr><td>
-            <ActivityLabel activity={this.props.activity} refAnchors={anchor => {
-              this.anchors.push(anchor);
-            }}/>
+            <ActivityLabel activity={this.props.activity} />
             </td>
             </tr>
             :

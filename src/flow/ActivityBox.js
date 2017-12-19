@@ -2,15 +2,8 @@ import React, { Component } from 'react';
 import './Activity.css';
 import ActivityType from './ActivityType';
 import ActivityStatus from './ActivityStatus';
-import {setActivityAsSource,setActivityAsTarget} from './connectionManager';
 
 class ActivityBox extends Component {
-  componentDidMount() {
-    this.props.refAnchors && this.props.refAnchors({initial: this.anchor, final: this.anchor});
-    setActivityAsSource(this.anchor);
-    setActivityAsTarget(this.anchor);
-  }
-  
   getActivityClass() {
     switch (this.props.activity.type) {
       case ActivityType.Initial:
@@ -23,9 +16,9 @@ class ActivityBox extends Component {
         return "hf-activity-task";
         case ActivityType.Email:
         return "hf-activity-email";
-      case ActivityType.Branch:
+      case ActivityType.Parallel:
         return "hf-activity-task";
-        //return "hf-activity-branch";
+        //return "hf-activity-Parallel";
       case ActivityType.Switch:
         return "hf-activity-switch";
       case ActivityType.Condition:
@@ -62,9 +55,7 @@ class ActivityBox extends Component {
     return (
       <div
         id={"activity-" + this.props.activity._id}
-        className={"hf-activity " + this.getActivityClass()}
-        ref={(div) => {this.anchor = div}}
-        onClick={() => this.props.onActivityClick(this.props.activity)}>
+        className={"hf-activity " + this.getActivityClass()}>
 
         <div className="hf-activity-icon">
         </div>

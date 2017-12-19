@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ActivityType from './ActivityType';
 import ActivitySequence from './ActivitySequence';
-import ActivityBranch from './ActivityBranch';
+import ActivityParallel from './ActivityParallel';
 import ActivityBox from './ActivityBox';
 
 class Activity extends Component {
@@ -9,8 +9,8 @@ class Activity extends Component {
     switch (this.props.activity.type) {
       case ActivityType.Sequence:
         return <ActivitySequence activity={this.props.activity} refAnchors={this.props.refAnchors} />;
-      case ActivityType.Branch:
-        return <ActivityBranch activity={this.props.activity} refAnchors={this.props.refAnchors} />;
+      case ActivityType.Parallel:
+        return <ActivityParallel activity={this.props.activity} refAnchors={this.props.refAnchors} />;
       case ActivityType.Initial:
       case ActivityType.Final:
       case ActivityType.Task:
