@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import Activity from './Activity';
 import ActivityBox from './ActivityBox';
+import ActivityFinalPoint from './ActivityFinalPoint';
 import { connect, setActivityAsSource, setActivityAsTarget} from './connectionManager';
 
 class ActivityBranch extends Component {
   anchors = [];
   componentDidMount() {
-    setActivityAsSource(this.finalAnchor);
-    setActivityAsTarget(this.finalAnchor);
     this.anchors.forEach(function(anchor, index) {
       // Calculate initial anchor
       // Connect intermediate anchors
       connect(this.initialAnchor.final, anchor.initial);
-      connect(anchor.final, this.finalAnchor);
+      connect(anchor.final, this.finalAnchor.initial);
     }.bind(this));
 
-    // Call ´refAnchors´ callback
-    console.log("Branch anchors",this.initialAnchor)
-    this.props.refAnchors && this.props.refAnchors({initial: this.initialAnchor.initial, final: this.finalAnchor});
+    this.props.refAnchors && this.props.refAnchors({initial: this.initialAnchor.initial, final: this.finalAnchor.final});
   }
 
   getChildrenActivities() {
@@ -60,6 +57,7 @@ class ActivityBranch extends Component {
           </tr>
           <tr>
             <td>
+              <ActivityFinalPoint activity={this.props.activity} refAnchors={(anchor) => {this.finalAnchor = anchor}} />
               <div ref={(div) => this.finalAnchor = div} style={{height: 0,width: 0,display: "inline-block",backgroundColor: "red"}}></div>
             </td>
           </tr>

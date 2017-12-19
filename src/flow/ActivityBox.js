@@ -61,6 +61,7 @@ class ActivityBox extends Component {
     let activityStatusClass = this.getActivityStatusClass();
     return (
       <div
+        id={"activity-" + this.props.activity._id}
         className={"hf-activity " + this.getActivityClass()}
         ref={(div) => {this.anchor = div}}
         onClick={() => this.props.onActivityClick(this.props.activity)}>
@@ -68,7 +69,7 @@ class ActivityBox extends Component {
         <div className="hf-activity-icon">
         </div>
         <div className="hf-activity-description ellipsis-2">
-          <p>{this.props.activity.name}</p>
+          <p>{this.props.activity._id} {this.props.activity.name}</p>
         </div>
         <div className={"hf-activity-status" + activityStatusClass}>
         </div>

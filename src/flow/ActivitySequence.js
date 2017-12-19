@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Activity from './Activity';
+import ActivityLabel from './ActivityLabel';
 import {connect} from './connectionManager';
 
 class ActivitySequence extends Component {
@@ -17,7 +18,6 @@ class ActivitySequence extends Component {
       }
       // Connect intermediate anchors
       if (index < this.anchors.length - 1){
-
         console.log("Anchor",anchor.final,this.anchors[index + 1].initial);
         connect(anchor.final,this.anchors[index + 1].initial);
       }
@@ -47,18 +47,20 @@ class ActivitySequence extends Component {
     });
   }
   render() {
-    
+    this.anchors = [];
 
     return (
       <table className="hf-workflow">
         <tbody>
           {
             this.props.activity.label ? 
-            <div 
-              className="hf-label" 
-              ref={(div) => {this.anchors.push({initial: div, final: div})}}>
-                {this.props.activity.label}
-            </div>:
+            <tr><td>
+            <ActivityLabel activity={this.props.activity} refAnchors={anchor => {
+              this.anchors.push(anchor);
+            }}/>
+            </td>
+            </tr>
+            :
             null
           }
           {this.renderChildrenActivities()}
