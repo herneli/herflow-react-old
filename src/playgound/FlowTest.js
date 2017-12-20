@@ -67,15 +67,32 @@ class FlowTest extends Component {
                   type: ActivityType.Parallel,
                   childrenActivities: [
                     {
-                      _id: 4311,
-                      name: "Tarea 1",
-                      type: ActivityType.Task
+                      _id: 4310,
+                      name: "Sequence",
+                      type: ActivityType.Sequence,
+                      childrenActivities: [
+                        {
+                          _id: 4311,
+                          name: "Tarea 1",
+                          type: ActivityType.Task
+                        },
+                        {
+                          _id: 4313,
+                          name: "Tarea 1",
+                          type: ActivityType.Task
+                        }
+                      ]
                     },
                     {
                       _id: 4312,
                       name: "Tarea 2",
                       type: ActivityType.Task
-                    }
+                    },
+                    {
+                      _id: 4314,
+                      name: "Tarea 3",
+                      type: ActivityType.Task
+                    }                    
                   ]
                 }]
             }
