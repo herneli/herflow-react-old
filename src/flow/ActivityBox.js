@@ -17,8 +17,7 @@ class ActivityBox extends Component {
         case ActivityType.Email:
         return "hf-activity-email";
       case ActivityType.Parallel:
-        return "hf-activity-task";
-        //return "hf-activity-Parallel";
+        return "hf-activity-branch";
       case ActivityType.Switch:
         return "hf-activity-switch";
       case ActivityType.Condition:

@@ -76,8 +76,35 @@
   background: #ffffff url("images/activity-email-32.png") no-repeat;
 }
 
-.hf-activity-subworkflow .hf-activity-icon{
-  background: #ffffff url("images/activity-subworkflow-32.png") no-repeat;
+.hf-activity-branch .hf-activity-icon{
+  background: #ffffff url("images/activity-branch-32.png") no-repeat;
+}
+
+.hf-activity-loop .hf-activity-icon{
+  background: #ffffff url("images/activity-loop-32.png") no-repeat;
+}
+/* .hf-final-point{
+  height: 22px;
+  width: 22px;
+  display: "inline-block";
+  color: "#aaaaaa";
+} */
+
+.hf-final-point{
+  height: 6px;
+  width: 6px;
+  display: inline-block;
+  position: relative;
+  background-color: #aaaaaa;
+  border-radius: 2px;
+}
+.hf-loop-back{
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  position: relative;
+  background: transparent url("images/loop-back.png") no-repeat;
+  z-index: 1;
 }
 
 .hf-label{
@@ -87,4 +114,35 @@
   margin: 0 20px;
   padding: 3px 2px;
   font-size: 12px;
+}
+
+.hf-no-label{
+  background-color: #b1b0b0;
+  height: 2px;
+  width: 2px;
+  display: inline-block;
+}
+
+
+.hf-insert{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background: transparent url("images/plus-circle.png") no-repeat;
+  z-index: 1;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.hf-insert{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background: transparent url("images/plus-circle.png") no-repeat;
+  z-index: 1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }

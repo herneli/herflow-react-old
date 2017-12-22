@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
+import ActivityType from './ActivityType';
 class ActivityFinalPoint extends Component {
   render() {
-    return (
-      <div id={"activity-" + this.props.activity._id + "-final"} style={{height: 1,width: 1,display: "inline-block"}}></div>
-    );
+    switch(this.props.activity.type){
+      case ActivityType.Loop:
+        return (
+          <div id={"activity-" + this.props.activity._id + "-final"} className="hf-loop-back" />
+        );
+      default:
+        return (
+          <div id={"activity-" + this.props.activity._id + "-final"} className="hf-final-point" />
+        );
+    }
   }
 }
 

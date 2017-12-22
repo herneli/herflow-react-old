@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './Workflow.css';
 import Activity from './Activity';
 import {getJsPlumbInstance, createConnections} from './connectionManager';
+import ActivitySelector from "./ActivitySelector";
 
 class Workflow extends Component {
   jsPlumbInstance = null;
@@ -18,6 +19,7 @@ class Workflow extends Component {
   render() {
     return (
       <div>
+        <ActivitySelector />
         <h1>{this.props.workflow.name}</h1>
         <div id="workflow-canvas">
           <Activity activity={this.props.workflow.mainActivity} />

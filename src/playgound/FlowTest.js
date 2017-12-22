@@ -5,13 +5,14 @@ import ActivityType from '../flow/ActivityType';
 import _ from 'lodash';
 
 class FlowTest extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.changeWorkflow = this.changeWorkflow.bind(this);
-    let   workflow = {
+    let workflow = {
       name: "Workflow de test",
       mainActivity: {
         _id: 1,
+        isMain: true,
         type: ActivityType.Sequence,
         childrenActivities: [
           {
@@ -60,42 +61,66 @@ class FlowTest extends Component {
                 name: "Seq 2",
                 label: "Etiqueta 2",
                 type: ActivityType.Sequence,
-                childrenActivities: [              
-                {
-                  _id: 431,
-                  name: "Tarea 3",
-                  type: ActivityType.Parallel,
-                  childrenActivities: [
-                    {
-                      _id: 4310,
-                      name: "Sequence",
-                      type: ActivityType.Sequence,
-                      childrenActivities: [
-                        {
-                          _id: 4311,
-                          name: "Tarea 1",
-                          type: ActivityType.Task
-                        },
-                        {
-                          _id: 4313,
-                          name: "Tarea 1",
-                          type: ActivityType.Task
-                        }
-                      ]
-                    },
-                    {
-                      _id: 4312,
-                      name: "Tarea 2",
-                      type: ActivityType.Task
-                    },
-                    {
-                      _id: 4314,
-                      name: "Tarea 3",
-                      type: ActivityType.Task
-                    }                    
-                  ]
-                }]
-            }
+                childrenActivities: [
+                  {
+                    _id: 431,
+                    name: "Tarea 3",
+                    type: ActivityType.Parallel,
+                    childrenActivities: [
+                      {
+                        _id: 4311,
+                        name: "Sequence",
+                        label: "Branch 1",
+                        type: ActivityType.Sequence,
+                        childrenActivities: [
+                          {
+                            _id: 43111,
+                            name: "Tarea 1",
+                            type: ActivityType.Task
+                          },
+                          {
+                            _id: 43112,
+                            name: "Tarea 1",
+                            type: ActivityType.Task
+                          }
+                        ]
+                      },
+                      {
+                        _id: 4312,
+                        name: "Sequence",
+                        label: "Branch 2",
+                        type: ActivityType.Sequence,
+                        childrenActivities: [
+                          {
+                            _id: 43121,
+                            name: "Tarea 1",
+                            type: ActivityType.Task
+                          }
+                        ]
+                      },
+                      {
+                        _id: 4313,
+                        name: "Sequence",
+                        label: "Branch 3",
+                        type: ActivityType.Sequence,
+                        childrenActivities: [
+                          {
+                            _id: 4313,
+                            name: "Loop",
+                            type: ActivityType.Loop,
+                            childrenActivities: [
+                              {
+                                _id: 43131,
+                                name: "Tarea 1",
+                                type: ActivityType.Task
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }]
+              }
             ]
           },
           {
@@ -112,12 +137,12 @@ class FlowTest extends Component {
 
   }
 
-  
-  
-  changeWorkflow(){
+
+
+  changeWorkflow() {
     let newWorkflow = _.cloneDeep(this.state.workflow);
-    newWorkflow.mainActivity.childrenActivities.splice(1,1);
-    this.setState({workflow: newWorkflow});
+    newWorkflow.mainActivity.childrenActivities.splice(1, 1);
+    this.setState({ workflow: newWorkflow });
   }
 
   render() {

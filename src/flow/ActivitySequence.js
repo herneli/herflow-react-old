@@ -1,22 +1,46 @@
 import React, { Component } from 'react';
 import Activity from './Activity';
 import ActivityLabel from './ActivityLabel';
+import ActivityInsert from './ActivityInsert';
+import ActivityType from './ActivityType';
 
 class ActivitySequence extends Component {
-    getChildrenActivities(){
+  getChildrenActivities() {
     return this.props.activity.childrenActivities || [];
   }
-  renderChildrenActivities(){
+
+  renderChildrenActivities() {
     let childrenActivities = this.getChildrenActivities();
-    return childrenActivities.map((activity) => {
-      return (
+
+    let returnNodes = [];
+    childrenActivities.forEach((activity,index) => {
+      if (index === 0 && !this.props.activity.isMain){
+        returnNodes.push(
+          <tr key={activity._id + "-insp"}>
+            <td>
+              <ActivityInsert activity={activity} insertBefore={true}/>
+            </td>
+          </tr>
+        );
+      }
+      returnNodes.push(
         <tr key={activity._id}>
           <td>
             <Activity activity={activity} />
           </td>
         </tr>
       );
+      if (activity.type !== ActivityType.Final) {
+        returnNodes.push(
+          <tr key={activity._id + "-ins"}>
+            <td>
+            <ActivityInsert activity={activity} insertBefore={false}/>
+            </td>
+          </tr>
+        );
+      }
     });
+    return returnNodes;
   }
   render() {
     this.anchors = [];
@@ -24,15 +48,12 @@ class ActivitySequence extends Component {
     return (
       <table className="hf-workflow">
         <tbody>
-          {
-            this.props.activity.label ? 
-            <tr><td>
-            <ActivityLabel activity={this.props.activity} />
-            </td>
-            </tr>
-            :
-            null
-          }
+            {!this.props.activity.isMain ?
+            <tr>
+              <td>
+                <ActivityLabel activity={this.props.activity} />
+              </td>
+            </tr>: null}
           {this.renderChildrenActivities()}
         </tbody>
       </table>

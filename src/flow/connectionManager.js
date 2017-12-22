@@ -46,7 +46,7 @@ function createConnections(jsPlumbInstance, activity) {
   switch (activity.type) {
     // Sequential activities
     case ActivityType.Sequence:
-      if (activity.label) {
+      if (!activity.isMain){
         nodes.push({ initial: activityId + '-label', final: activityId + "-label" });
       }
       activity.childrenActivities.forEach(function (activity) {
