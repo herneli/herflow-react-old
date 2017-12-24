@@ -8,7 +8,7 @@ function getJsPlumbInstance() {
     strokeWidth: 2
   };
   let jsPlumbInstance = jsPlumb.getInstance();
-  jsPlumbInstance.setContainer("workflow-canvas");
+  jsPlumbInstance.setContainer("body");
   jsPlumbInstance.Defaults.PaintStyle = defaultPaintStyle;
   jsPlumbInstance.Defaults.Connector = ["Flowchart", { cornerRadius: 4, midpoint: 1, stub: 10 }];
   jsPlumbInstance.Defaults.Endpoint = "Blank";
@@ -46,10 +46,10 @@ function createConnections(jsPlumbInstance, activity) {
   switch (activity.type) {
     // Sequential activities
     case ActivityType.Sequence:
-      if (!activity.isMain){
+      if (activity.label){
         nodes.push({ initial: activityId + '-label', final: activityId + "-label" });
       }
-      activity.childrenActivities.forEach(function (activity) {
+      activity.childrenActivities && activity.childrenActivities.forEach(function (activity) {
         nodes.push(createConnections(jsPlumbInstance, activity));
       });
       if (nodes.length > 0) {
@@ -64,6 +64,7 @@ function createConnections(jsPlumbInstance, activity) {
     // Parallel activities
     case ActivityType.Switch:
     case ActivityType.Parallel:
+    case ActivityType.Loop:
       let finalPointId = activityId + "-final";
       if (activity.childrenActivities && activity.childrenActivities.length > 0) {
         activity.childrenActivities.forEach(function (activity) {

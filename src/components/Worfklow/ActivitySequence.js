@@ -13,16 +13,16 @@ class ActivitySequence extends Component {
     let childrenActivities = this.getChildrenActivities();
 
     let returnNodes = [];
-    childrenActivities.forEach((activity,index) => {
-      if (index === 0 && !this.props.activity.isMain){
-        returnNodes.push(
-          <tr key={activity._id + "-insp"}>
-            <td>
-              <ActivityInsert activity={activity} insertBefore={true}/>
-            </td>
-          </tr>
-        );
-      }
+    if (!this.props.activity.isMain) {
+      returnNodes.push(
+        <tr key={this.props.activity._id + "-ins-first"}>
+          <td>
+            <ActivityInsert activity={this.props.activity} insertFirst={true} />
+          </td>
+        </tr>
+      );
+    }
+    childrenActivities.forEach((activity, index) => {
       returnNodes.push(
         <tr key={activity._id}>
           <td>
@@ -34,7 +34,7 @@ class ActivitySequence extends Component {
         returnNodes.push(
           <tr key={activity._id + "-ins"}>
             <td>
-            <ActivityInsert activity={activity} insertBefore={false}/>
+              <ActivityInsert activity={activity} insertBefore={false} />
             </td>
           </tr>
         );
@@ -48,12 +48,12 @@ class ActivitySequence extends Component {
     return (
       <table className="hf-workflow">
         <tbody>
-            {!this.props.activity.isMain ?
+          {this.props.activity.label ?
             <tr>
               <td>
                 <ActivityLabel activity={this.props.activity} />
               </td>
-            </tr>: null}
+            </tr> : null}
           {this.renderChildrenActivities()}
         </tbody>
       </table>

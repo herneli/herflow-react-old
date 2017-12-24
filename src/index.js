@@ -1,8 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, combineReducers,compose } from 'redux';
+import { HashRouter as Router } from 'react-router-dom';
+import thunk from 'redux-thunk';
 import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import App from './components/App/App';
+import sessionReducer from './common/session/reducer';
+import workflowReducer from './components/Worfklow/redux/reducer';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import appReducer from './components/App/reducer';
+// Reducers
+let rootReducer = combineReducers({
+  app: appReducer,
+  session: sessionReducer,
+  workflow: workflowReducer
+});
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+    rootReducer, 
+    composeEnhancers(
+    applyMiddleware(thunk)
+  )
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+</Provider>, document.getElementById('root'));

@@ -1,0 +1,29 @@
+{
+  "layout": {
+    "title": "Sofia"
+  },
+  "menu": {
+    "language": "Idioma"
+  },
+  "cancel": "Cancelar",
+  "close": "Cerrar",
+  "delete": "Eliminar",
+  "emptySelect": "Seleccionar...",
+  "error": "Ha ocurrido un error",
+  "loading": "Cargando...",
+  "no": "No",
+  "noDataToShow": "No hay elementos a mostrar",
+  "saving": "Guardando...",
+  "save": "Guardar",
+  "saveAndClose": "Guardar y cerrar",
+  "saved": "Guardado",
+  "send": "Enviar",
+  "sending": "Enviando...",
+  "yes": "Sí",
+  "rocheComponents": {
+    "connecting": "Conectando...",
+    "googleAuthentication": "Acceder mediante Google",
+    "loginText": "Pulsa el siguiente botón para acceder mediante tu cuenta de Google.",
+    "unexpectedError": "Se ha producido un error inesperado"
+  }
+}

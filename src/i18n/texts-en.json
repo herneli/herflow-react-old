@@ -1,0 +1,26 @@
+{
+  "layout": {
+    "title": "Herflow"
+  },
+  "cancel": "Cancel",
+  "close": "Close",
+  "delete": "Delete",
+  "emptySelect": "Select...",
+  "error": "An error occurred",
+  "loading": "Loading...",
+  "no": "No",
+  "noDataToShow": "No elements to show",
+  "saving": "Saving...",
+  "save": "Save",
+  "saveAndClose": "Save and close",
+  "saved": "Saved",
+  "send": "Send",
+  "sending": "Sending...",
+  "yes": "Yes",
+  "common": {
+    "connecting": "Connecting...",
+    "googleAuthentication": "Log in with Google",
+    "loginText": "Click the following button to log in using your Google account.",
+    "unexpectedError": "An unexpected error has occurred"
+  }
+}

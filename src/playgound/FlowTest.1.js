@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Workflow } from '../components/Worfklow/Workflow';
-import ActivityType from '../components/Worfklow/ActivityType';
+import Workflow from "../flow/Workflow";
+import ActivityType from '../flow/ActivityType';
 
 import _ from 'lodash';
 
 class FlowTest extends Component {
   constructor(props) {
     super(props);
+    this.changeWorkflow = this.changeWorkflow.bind(this);
     let workflow = {
       name: "Workflow de test",
       mainActivity: {
@@ -69,7 +70,7 @@ class FlowTest extends Component {
                       {
                         _id: 4311,
                         name: "Sequence",
-                        label: "Branch 1 with a very very long label that should be broken",
+                        label: "Branch 1",
                         type: ActivityType.Sequence,
                         childrenActivities: [
                           {
@@ -111,7 +112,6 @@ class FlowTest extends Component {
                               {
                                 _id: 43131,
                                 name: "Tarea 1",
-                                label: "Test",
                                 type: ActivityType.Sequence
                               }
                             ]
@@ -131,9 +131,8 @@ class FlowTest extends Component {
         ]
       }
     };
-    this.state = { workflow: workflow};
+    this.state = { workflow };
   }
-
   componentDidMount() {
 
   }

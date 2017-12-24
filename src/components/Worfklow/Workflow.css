@@ -2,6 +2,7 @@ table.hf-workflow{
   border-collapse: separate;
   border-spacing: 0px;
   background-color: #f1eeee;
+  display: inline-block;
 }
 
 td{

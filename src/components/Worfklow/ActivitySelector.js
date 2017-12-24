@@ -22,51 +22,6 @@ let activities = [
     type: ActivityType.Loop, 
     text: "Repetir",
     image: ImageLoop
-  },
-  {
-    type: ActivityType.Task, 
-    text: "Tarea",
-    image: ImageTask
-  },
-  {
-    type: ActivityType.Condition, 
-    text: "Condición",
-    image: ImageCondition
-  },
-  {
-    type: ActivityType.Loop, 
-    text: "Repetir",
-    image: ImageLoop
-  },
-  {
-    type: ActivityType.Task, 
-    text: "Tarea",
-    image: ImageTask
-  },
-  {
-    type: ActivityType.Condition, 
-    text: "Condición",
-    image: ImageCondition
-  },
-  {
-    type: ActivityType.Loop, 
-    text: "Repetir",
-    image: ImageLoop
-  },
-  {
-    type: ActivityType.Task, 
-    text: "Tarea",
-    image: ImageTask
-  },
-  {
-    type: ActivityType.Condition, 
-    text: "Condición",
-    image: ImageCondition
-  },
-  {
-    type: ActivityType.Loop, 
-    text: "Repetir",
-    image: ImageLoop
   }  
 ];
 class ActivitySelector extends Component {
@@ -79,17 +34,15 @@ class ActivitySelector extends Component {
   };
 
   render() {
-    const { classes, onClose, selectedValue } = this.props;
-
     return (
-      <Dialog onClose={this.handleClose} open={true}>
-        <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+      <Dialog onClose={this.handleClose} open={false}>
+        <DialogTitle id="simple-dialog-title">Select activity</DialogTitle>
         <div>
           <List>
-            {activities.map(activity => (
-              <ListItem button onClick={() => this.handleListItemClick(activity)} key={activity.type}>
+            {activities.map((activity,index) => (
+              <ListItem button onClick={() => this.handleListItemClick(activity)} key={index}>
                 <ListItemAvatar>
-                  <Avatar src={activity.image} />
+                  <Avatar src={activity.image} style={{height: 24,width: 24}}/>
                 </ListItemAvatar>
                 <ListItemText primary={activity.text} />
               </ListItem>
