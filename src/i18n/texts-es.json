@@ -20,7 +20,13 @@
   "send": "Enviar",
   "sending": "Enviando...",
   "yes": "Sí",
-  "rocheComponents": {
+  "workflow": {
+    "condition": "Condición",
+    "loop": "Repetir",
+    "selectActivity": "Seleccionar actividad",
+    "task": "Tarea"
+  },
+  "common": {
     "connecting": "Conectando...",
     "googleAuthentication": "Acceder mediante Google",
     "loginText": "Pulsa el siguiente botón para acceder mediante tu cuenta de Google.",

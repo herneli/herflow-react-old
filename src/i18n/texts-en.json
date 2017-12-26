@@ -17,6 +17,12 @@
   "send": "Send",
   "sending": "Sending...",
   "yes": "Yes",
+  "workflow": {
+    "condition": "Condition",
+    "loop": "Loop",
+    "selectActivity": "Select activity",
+    "task": "Task"
+  },  
   "common": {
     "connecting": "Connecting...",
     "googleAuthentication": "Log in with Google",

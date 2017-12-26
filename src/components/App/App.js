@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { setSession, setLanguage, logoutGoogle } from '../../common/session/actions';
 import Layout from '../Layout/Layout';
 import Workflow from '../Worfklow/Workflow';
-import FlowTest from '../../playgound/FlowTest';
 
 class App extends Component {
 
@@ -56,7 +55,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(logoutGoogle())
         },
         onChangeLanguage: (language) => {
-            T.setTexts(require('../../i18n/texts-' + language + '.json'));
+            let texts = require('../../i18n/texts-' + language + '.json'); 
+            T.setTexts(texts);
             dispatch(setLanguage(language));
         }
     };

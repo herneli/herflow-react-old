@@ -3,10 +3,28 @@ import Activity from './Activity';
 import ActivityLabel from './ActivityLabel';
 import ActivityInsert from './ActivityInsert';
 import ActivityType from './ActivityType';
+import AcitivitySelector from './ActivitySelector';
 
 class ActivitySequence extends Component {
+  constructor(props){
+    super(props);
+    this.state = { insertDialog: false };
+
+    // Bindings
+    this.handleInsertActivity = this.handleInsertActivity.bind(this);
+    this.handleCloseDialog = this.handleCloseDialog.bind(this);
+  }
+
   getChildrenActivities() {
     return this.props.activity.childrenActivities || [];
+  }
+
+  handleInsertActivity(activity, insertFirst){
+    this.setState({insertDialog: true, activity: activity, insertFirst: insertFirst});
+  }
+
+  handleCloseDialog(){
+    this.setState({insertDialog: false});
   }
 
   renderChildrenActivities() {
@@ -17,7 +35,10 @@ class ActivitySequence extends Component {
       returnNodes.push(
         <tr key={this.props.activity._id + "-ins-first"}>
           <td>
-            <ActivityInsert activity={this.props.activity} insertFirst={true} />
+            <ActivityInsert 
+              activity={this.props.activity} 
+              insertFirst={true} 
+              onClick={this.handleInsertActivity}/>
           </td>
         </tr>
       );
@@ -34,7 +55,10 @@ class ActivitySequence extends Component {
         returnNodes.push(
           <tr key={activity._id + "-ins"}>
             <td>
-              <ActivityInsert activity={activity} insertBefore={false} />
+              <ActivityInsert 
+                activity={activity} 
+                insertBefore={false} 
+                onClick={this.handleInsertActivity}/>
             </td>
           </tr>
         );
@@ -46,6 +70,7 @@ class ActivitySequence extends Component {
     this.anchors = [];
 
     return (
+      <div>
       <table className="hf-workflow">
         <tbody>
           {this.props.activity.label ?
@@ -57,6 +82,10 @@ class ActivitySequence extends Component {
           {this.renderChildrenActivities()}
         </tbody>
       </table>
+      <AcitivitySelector 
+        open={this.state.insertDialog} 
+        onClose={this.handleCloseDialog}/>
+      </div>
     );
   }
 }

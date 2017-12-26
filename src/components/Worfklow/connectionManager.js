@@ -15,28 +15,13 @@ function getJsPlumbInstance() {
   jsPlumbInstance.Defaults.Anchor = ["Top", "Bottom"];
   return jsPlumbInstance;
 }
-// const hoverPaintStyle = { strokeStyle: "#7ec3d9" };
-// const arrowPaintStyle = {
-//   lineWidth: 3,
-//   strokeStyle: "rgba(100,100,100,0.8)",
-//   outlineColor: "#666",
-//   outlineWidth: 1,
-//   joinstyle: "round"
-// };
 
 function connect(jsPlumbInstance, source, destination) {
-  console.log("Connect", source, destination)
   jsPlumbInstance.connect({
     source: source,
     target: destination
   });
 }
-
-// function repaintEverything(){
-//   console.log("Repaint");
-//   jsPlumbInstance.repaintEverything();
-// }
-
 
 function createConnections(jsPlumbInstance, activity) {
 
