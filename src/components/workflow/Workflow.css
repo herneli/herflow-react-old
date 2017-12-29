@@ -1,3 +1,8 @@
+#workflow-canvas{
+  position: relative;
+  /* text-align: center; */
+}
+
 table.hf-workflow{
   border-collapse: separate;
   border-spacing: 0px;
@@ -20,7 +25,3 @@ tr{
   border-spacing: 0px;
 }
 
-#workflow-canvas{
-  position: relative;
-  text-align: center;
-}

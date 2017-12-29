@@ -10,3 +10,12 @@
         width: 100%;
     }   
 }
+
+.hf-menu-button {
+    margin-left: -12px;
+    margin-right: 20px;
+}
+
+.hf-main{
+    margin-top: 70px;
+}

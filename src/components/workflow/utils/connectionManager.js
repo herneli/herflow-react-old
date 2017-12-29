@@ -19,7 +19,7 @@ function getJsPlumbInstance() {
   let jsPlumb = window.jsPlumb;
 
   let jsPlumbInstance = jsPlumb.getInstance();
-  jsPlumbInstance.setContainer("body");
+  jsPlumbInstance.setContainer("workflow-canvas");
   jsPlumbInstance.Defaults.PaintStyle = defaultPaintStyle;
   jsPlumbInstance.Defaults.Connector = ["Flowchart", { cornerRadius: 4, midpoint: 1, stub: 10 }];
   jsPlumbInstance.Defaults.Endpoint = "Blank";

@@ -5,7 +5,7 @@ import ActivityInsert from './ActivityInsert';
 import ActivityType from './classes/ActivityType';
 import AcitivitySelector from './ActivitySelector';
 import { handleOnChangeChildren } from './utils/activityManager';
-import { generateActivity } from './utils/activityManager';
+import ActivityManager from './classes/ActivityManager';
 import _ from 'lodash';
 
 class ActivitySequence extends Component {
@@ -33,7 +33,7 @@ class ActivitySequence extends Component {
       let newActivity = _.assign({}, this.props.activity, {
         childrenActivities: [
           ...children.slice(0, this.state.insertIndex),
-          generateActivity(activity.type),
+          ActivityManager.generateActivity(activity.type),
           ...children.slice(this.state.insertIndex, children.length)
         ]
       });

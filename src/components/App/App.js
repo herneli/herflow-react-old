@@ -4,7 +4,16 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import T from 'i18n-react';
 import PropTypes from 'prop-types';
 import { setSession, setLanguage, logoutGoogle } from 'common/session/actions';
+import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
+import blue from 'material-ui/colors/blue';
 import Workflow from '../workflow/Workflow';
+import Layout from './Layout';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: blue
+    }
+});
 
 class App extends Component {
 
@@ -13,15 +22,14 @@ class App extends Component {
     }
 
     render() {
-
         return (
-            // <Layout
-            //     onChangeLanguage={this.props.onChangeLanguage}
-            //     onRefresh={this.props.onRefresh}>
-                <Switch>
-                    <Route exact path="/" component={Workflow} />
-                </Switch>
-            //</Layout>
+            <MuiThemeProvider theme={theme}>
+                <Layout>
+                    <Switch>
+                        <Route exact path="/" component={Workflow} />
+                    </Switch>
+                </Layout>
+            </MuiThemeProvider>
         );
     }
 

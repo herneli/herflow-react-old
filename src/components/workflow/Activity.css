@@ -3,7 +3,7 @@
   height: 32px;
   background-color: #fff;
   border-radius: 2px;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0),0 2px 4px rgba(0,0,0,.12);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0),0 2px 4px rgba(0,0,0,.12);
   margin: 20px;
   display: inline-block;
   position: relative;
@@ -83,12 +83,6 @@
 .hf-activity-loop .hf-activity-icon{
   background: #ffffff url("images/activity-loop-32.png") no-repeat;
 }
-/* .hf-final-point{
-  height: 22px;
-  width: 22px;
-  display: "inline-block";
-  color: "#aaaaaa";
-} */
 
 .hf-final-point{
   height: 6px;
@@ -134,18 +128,8 @@
   position: relative;
   background: transparent url("images/plus-circle.png") no-repeat;
   z-index: 1;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.hf-insert{
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  position: relative;
-  background: transparent url("images/plus-circle.png") no-repeat;
-  z-index: 1;
   margin-top: 10px;
   margin-bottom: 10px;
   cursor: pointer;
 }
+
