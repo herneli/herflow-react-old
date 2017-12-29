@@ -7,7 +7,7 @@ class ActivityInsert extends Component {
   }
   
   handleOnClick(){
-    this.props.onClick && this.props.onClick(this.props.activity,this.props.insertFirst || false);
+    this.props.onClick && this.props.onClick(this.props.insertIndex);
   }
 
   render() {

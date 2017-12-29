@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Workflow.css';
 import Activity from './Activity';
-import { getJsPlumbInstance, createConnections } from './connectionManager';
+import { getJsPlumbInstance, createConnections } from './utils/connectionManager';
 import ActivitySelector from "./ActivitySelector";
-import { loadFakeWorkflow } from './redux/actions';
+import { loadFakeWorkflow, setCurrentWorkflow } from './redux/actions';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class Workflow extends Component {
   jsPlumbInstance = null;
   constructor(props){
     super(props);
     this.jsPlumbInstance = getJsPlumbInstance();
+    this.handleOnChangeMainActivity = this.handleOnChangeMainActivity.bind(this);
   }
   componentDidMount() {
     this.props.loadFakeWorkflow();
@@ -26,6 +28,14 @@ class Workflow extends Component {
     }
   }
 
+  handleOnChangeMainActivity(activity){
+    let newWorfklow = _.assign({},this.props.workflow,{
+      mainActivity: activity
+    });
+    console.log("main change");
+    this.props.onChangeWorkflow(newWorfklow);
+  }
+
   render() {
     return (
       this.props.workflow ?
@@ -33,7 +43,9 @@ class Workflow extends Component {
           <ActivitySelector />
           <h1>{this.props.workflow.name}</h1>
           <div id="workflow-canvas">
-            <Activity activity={this.props.workflow.mainActivity} />
+            <Activity 
+              activity={this.props.workflow.mainActivity} 
+              onChange={this.handleOnChangeMainActivity}/>
           </div>
         </div>
         :
@@ -56,6 +68,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     loadFakeWorkflow: () => {
       dispatch(loadFakeWorkflow())
+    },
+    onChangeWorkflow: (workflow) => {
+      dispatch(setCurrentWorkflow(workflow))
     }
   };
 };

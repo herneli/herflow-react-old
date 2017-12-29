@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ActivityType from './ActivityType';
+import ActivityType from './classes/ActivityType';
 class ActivityFinalPoint extends Component {
   render() {
     switch(this.props.activity.type){

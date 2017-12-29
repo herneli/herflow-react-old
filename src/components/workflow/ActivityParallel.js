@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import Activity from './Activity';
 import ActivityBox from './ActivityBox';
 import ActivityFinalPoint from './ActivityFinalPoint';
+import {handleOnChangeChildren} from './utils/activityManager';
 
 class ActivityParallel extends Component {
+  constructor(props) {
+    super(props);
+    this.handleOnChangeChildren = handleOnChangeChildren.bind(this);
+  }
+  
   getChildrenActivities() {
     return this.props.activity.childrenActivities || [];
   }
@@ -13,7 +19,9 @@ class ActivityParallel extends Component {
     let childrenActivityComponents = childrenActivities.map((activity) => {
       return (
         <td key={activity._id}>
-          <Activity activity={activity} />
+          <Activity 
+            activity={activity} 
+            onChange={this.handleOnChangeChildren}/>
         </td>
       );
     });

@@ -2,18 +2,27 @@ import React, { Component } from 'react';
 import Activity from './Activity';
 import ActivityBox from './ActivityBox';
 import ActivityFinalPoint from './ActivityFinalPoint';
+import {handleOnChangeChildren} from './utils/activityManager';
 
 class ActivityParallel extends Component {
+  constructor(props) {
+    super(props);
+    this.handleOnChangeChildren = handleOnChangeChildren.bind(this);
+  }
+  
   getChildrenActivities() {
     return this.props.activity.childrenActivities || [];
   }
 
+  
   render() {
     let childrenActivities = this.getChildrenActivities();
     let childrenActivityComponents = childrenActivities.map((activity) => {
       return (
         <td key={activity._id}>
-          <Activity activity={activity} />
+          <Activity 
+            activity={activity} 
+            onChange={this.handleOnChangeChildren}/>
         </td>
       );
     });
@@ -21,7 +30,7 @@ class ActivityParallel extends Component {
       <table className="hf-workflow">
         <tbody>
           <tr>
-            <td>
+            <td id={"activity-" + this.props.activity._id + "-loop-back"}>
               <ActivityBox activity={this.props.activity} />
             </td>
           </tr>

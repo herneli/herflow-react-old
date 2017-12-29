@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import T from 'i18n-react';
 import PropTypes from 'prop-types';
-import { setSession, setLanguage, logoutGoogle } from '../../common/session/actions';
-import Layout from '../Layout/Layout';
-import Workflow from '../Worfklow/Workflow';
+import { setSession, setLanguage, logoutGoogle } from 'common/session/actions';
+import Workflow from '../workflow/Workflow';
 
 class App extends Component {
 
@@ -55,7 +54,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(logoutGoogle())
         },
         onChangeLanguage: (language) => {
-            let texts = require('../../i18n/texts-' + language + '.json'); 
+            let texts = require('i18n/texts-' + language + '.json'); 
             T.setTexts(texts);
             dispatch(setLanguage(language));
         }

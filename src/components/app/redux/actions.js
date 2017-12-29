@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import HttpClient from '../../common/HttpClient';
+import HttpClient from 'common/HttpClient';
 
 // Action constants
 export const SET_USER_SETTINGS = "SET_USER_SETTINGS";

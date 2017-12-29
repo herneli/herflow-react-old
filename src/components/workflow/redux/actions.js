@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
-import HttpClient from '../../../common/HttpClient';
-import fakeWorkflow from './fakeWorkflow';
+import fakeWorkflow from '../utils/fakeWorkflow';
 
 // Action constants
 export const SET_CURRENT_WORKFLOW = "SET_CURRENT_WORKFLOW";

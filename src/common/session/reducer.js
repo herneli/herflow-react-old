@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import {SET_SESSION, SET_LANGUAGE, SET_MESSAGE, LOGOUT, TOGGLE_SIDEBAR} from './actions';
+import {SET_SESSION, SET_LANGUAGE, SET_MESSAGE, LOGOUT} from './actions';
 import {setTokens,getSessionInfo,setLanguage} from './SessionHelper';
 import _ from 'lodash';
 

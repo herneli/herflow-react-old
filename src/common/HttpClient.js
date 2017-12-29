@@ -1,7 +1,6 @@
 import request from 'request';
 import { setSession } from './session/actions';
 import { addApiHeaders, isTokenExpired, refreshToken } from './session/SessionHelper';
-import T from 'i18n-react';
 
 class HttpClient {
   callRedux(dispatch, config,callback) {

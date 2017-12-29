@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Activity.css';
-import ActivityType from './ActivityType';
+import ActivityType from './classes/ActivityType';
 import ActivityStatus from './ActivityStatus';
+import './Activity.css';
 
 class ActivityBox extends Component {
   getActivityClass() {
@@ -59,7 +59,7 @@ class ActivityBox extends Component {
         <div className="hf-activity-icon">
         </div>
         <div className="hf-activity-description ellipsis-2">
-          <p>{this.props.activity._id} {this.props.activity.name}</p>
+          <p>{this.props.activity.name}</p>
         </div>
         <div className={"hf-activity-status" + activityStatusClass}>
         </div>

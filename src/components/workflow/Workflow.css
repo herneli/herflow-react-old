@@ -5,6 +5,10 @@ table.hf-workflow{
   display: inline-block;
 }
 
+table.hf-workflow.main{
+  padding: 0 20px;
+}
+
 td{
   vertical-align: top;
   text-align: center;
@@ -18,4 +22,5 @@ tr{
 
 #workflow-canvas{
   position: relative;
+  text-align: center;
 }

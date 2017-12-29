@@ -21,8 +21,18 @@
   "sending": "Enviando...",
   "yes": "Sí",
   "workflow": {
+    "branch": "Rama {branchNumber}",
     "condition": "Condición",
+    "conditionTrue": "Sí",
+    "conditionFalse": "No",
+    "email": "Email",
     "loop": "Repetir",
+    "newCondition": "Condición",
+    "newEmail": "e-Mail",
+    "newLoop": "Repetir",
+    "newParallel": "Ejecución paralela",
+    "newTask": "Tarea",
+    "parallel": "Ejecución paralela",
     "selectActivity": "Seleccionar actividad",
     "task": "Tarea"
   },
