@@ -38,6 +38,19 @@
   top: 0px;
 }
 
+.hf-activity-menu{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 32px;
+  width: 32px;
+  fill: #aaaaaa;
+}
+
+.hf-activity-menu button{
+  height: 32px;
+}
+
 .hf-activity-closed {
   background-color: #009900;
 }

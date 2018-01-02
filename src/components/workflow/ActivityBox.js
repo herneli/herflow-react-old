@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
 import ActivityType from './classes/ActivityType';
 import ActivityStatus from './ActivityStatus';
+import IconButton from 'material-ui/IconButton';
+import DotsVerticalIcon from 'mdi-react/DotsVerticalIcon';
 import './Activity.css';
 
 class ActivityBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMenu: false
+    };
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+  }
+
+  handleMouseEnter(){
+    this.setState({showMenu: true});
+  }
+
+  handleMouseLeave(){
+    this.setState({showMenu: false});
+  }  
+  
   getActivityClass() {
     switch (this.props.activity.type) {
       case ActivityType.Initial:
@@ -54,8 +73,9 @@ class ActivityBox extends Component {
     return (
       <div
         id={"activity-" + this.props.activity._id}
-        className={"hf-activity " + this.getActivityClass()}>
-
+        className={"hf-activity " + this.getActivityClass()}
+        onMouseEnter={this.handleMouseEnter} 
+        onMouseLeave={this.handleMouseLeave} >
         <div className="hf-activity-icon">
         </div>
         <div className="hf-activity-description ellipsis-2">
@@ -63,6 +83,14 @@ class ActivityBox extends Component {
         </div>
         <div className={"hf-activity-status" + activityStatusClass}>
         </div>
+        {this.state.showMenu ?
+          <div className="hf-activity-menu">
+            <IconButton>
+              <DotsVerticalIcon/>
+            </IconButton>
+          </div> 
+          : null 
+        }
       </div>
     );
   }

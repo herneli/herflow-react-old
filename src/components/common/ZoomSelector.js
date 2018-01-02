@@ -23,6 +23,10 @@ class ZoomSelector extends Component {
     this.setState({ open: false });
   };
 
+  handleClose(){
+    this.props.setState({open: false});
+  }
+
   render() {
     return (
       <div>
@@ -37,7 +41,7 @@ class ZoomSelector extends Component {
           id="simple-menu"
           anchorEl={this.state.anchorEl}
           open={this.state.open}
-          onClose={this.handleSelected}
+          onClose={this.handleClose}
         >
           <MenuItem onClick={() => this.handleSelected(0.5)}>50%</MenuItem>
           <MenuItem onClick={() => this.handleSelected(0.75)}>75%</MenuItem>
