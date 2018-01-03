@@ -3,26 +3,49 @@ import ActivityType from './classes/ActivityType';
 import ActivityStatus from './ActivityStatus';
 import IconButton from 'material-ui/IconButton';
 import DotsVerticalIcon from 'mdi-react/DotsVerticalIcon';
+import Menu, { MenuItem } from 'material-ui/Menu';
+import _ from 'lodash';
+import T from 'i18n-react';
 import './Activity.css';
 
 class ActivityBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showMenu: false
+      showMenuButton: false,
+      menuOpen: false,
+      anchorEl: null
     };
+    // Bindings
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.handleMenuClick = this.handleMenuClick.bind(this);
+    this.handleMenuSelected = this.handleMenuSelected.bind(this);
+    this.handleMenuClose = this.handleMenuClose.bind(this);
   }
 
   handleMouseEnter(){
-    this.setState({showMenu: true});
+    this.setState(_.assign({},this.state,{showMenuButton: true}));
   }
 
   handleMouseLeave(){
-    this.setState({showMenu: false});
+    this.setState(_.assign({},this.state,{showMenuButton: false}));
   }  
-  
+
+  handleMenuClick(event) {
+    this.setState(_.assign({},this.state,{ menuOpen: true, anchorEl: event.currentTarget }));
+  };
+
+  handleMenuSelected(selected) {
+    this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null }));
+    if (selected === 'cut'){
+      this.props.onCut && this.props.onCut(this.props.activity);
+    }
+  };
+
+  handleMenuClose(){
+    this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null }));
+  }
   getActivityClass() {
     switch (this.props.activity.type) {
       case ActivityType.Initial:
@@ -83,11 +106,23 @@ class ActivityBox extends Component {
         </div>
         <div className={"hf-activity-status" + activityStatusClass}>
         </div>
-        {this.state.showMenu ?
+        {this.state.showMenuButton ?
           <div className="hf-activity-menu">
-            <IconButton>
+            <IconButton
+              aria-owns={'simple-menu'}
+              aria-haspopup="true"
+              onClick={this.handleMenuClick}>
               <DotsVerticalIcon/>
             </IconButton>
+            <Menu
+              id="simple-menu"
+              anchorEl={this.state.anchorEl}
+              open={this.state.menuOpen}
+              onClose={this.handleMenuClose}
+            >
+              <MenuItem onClick={() => this.handleMenuSelected("edit")}><T.span text="edit" /></MenuItem>
+              <MenuItem onClick={() => this.handleMenuSelected("cut")}><T.span text="cut" /></MenuItem>
+            </Menu>            
           </div> 
           : null 
         }

@@ -1,9 +1,6 @@
 {
   "layout": {
-    "title": "Sofia"
-  },
-  "menu": {
-    "language": "Idioma"
+    "title": "Herflow"
   },
   "cancel": "Cancelar",
   "close": "Cerrar",
@@ -22,6 +19,7 @@
   "yes": "Sí",
   "workflow": {
     "branch": "Rama {branchNumber}",
+    "clipboard": "Portapapeles",
     "condition": "Condición",
     "conditionTrue": "Sí",
     "conditionFalse": "No",

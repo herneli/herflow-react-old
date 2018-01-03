@@ -20,7 +20,7 @@ class ActivityParallel extends Component {
       return (
         <td key={activity._id}>
           <Activity 
-            activity={activity} 
+            activity={activity}
             onChange={this.handleOnChangeChildren}/>
         </td>
       );
@@ -30,7 +30,10 @@ class ActivityParallel extends Component {
         <tbody>
           <tr>
             <td>
-              <ActivityBox activity={this.props.activity} />
+              <ActivityBox 
+                activity={this.props.activity} 
+                onCut={this.props.onCut}
+              />
             </td>
           </tr>
           <tr>

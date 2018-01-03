@@ -12,25 +12,32 @@ class Activity extends Component {
       case ActivityType.Sequence:
         return <ActivitySequence 
                   activity={this.props.activity} 
-                  onChange={this.props.onChange}/>;
+                  onChange={this.props.onChange}
+                  onCut={this.props.onCut}/>;
       case ActivityType.Parallel:
         return <ActivityParallel 
                   activity={this.props.activity}  
-                  onChange={this.props.onChange}/>;
+                  onChange={this.props.onChange}
+                  onCut={this.props.onCut}/>;
       case ActivityType.Loop:
         return <ActivityLoop 
                   activity={this.props.activity} 
-                  onChange={this.props.onChange}/>;
+                  onChange={this.props.onChange}
+                  onCut={this.props.onCut}/>;
       case ActivityType.Condition:
         return <ActivityCondition
           activity={this.props.activity} 
-          onChange={this.props.onChange}/>;        
+          onChange={this.props.onChange}
+          onCut={this.props.onCut}/>;        
       case ActivityType.Initial:
       case ActivityType.Final:
       case ActivityType.Task:
       case ActivityType.Approval:
       case ActivityType.Email:
-        return <ActivityBox activity={this.props.activity} />
+        return <ActivityBox 
+          activity={this.props.activity} 
+          onCut={this.props.onCut}
+        />
       default:
         return <div>Component {this.props.activity.type} not defined</div>
     }

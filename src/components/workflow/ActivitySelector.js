@@ -8,12 +8,21 @@ import ImageCondition from './images/activity-condition-32.png';
 import ImageLoop from './images/activity-loop-32.png';
 import ImageEmail from './images/activity-email-32.png';
 import ImageBranch from './images/activity-branch-32.png';
+import ImageClipboard from './images/clipboard.png';
 import T from 'i18n-react';
 
 
 class ActivitySelector extends Component {
   getActivities(){
-    return [
+    let activities = [];
+    if (this.props.activityClipboard){
+      activities.push({
+        type: "clipboard", 
+        text: T.translate("workflow.clipboard"),
+        image: ImageClipboard
+      });
+    }
+    activities = activities.concat([
       {
         type: ActivityType.Task, 
         text: T.translate("workflow.task"),
@@ -39,7 +48,8 @@ class ActivitySelector extends Component {
         text: T.translate("workflow.parallel"),
         image: ImageBranch
       }        
-    ];
+    ]);
+    return activities;
   }
   handleClose = () => {
     this.props.onClose(null);

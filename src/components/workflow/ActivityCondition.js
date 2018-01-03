@@ -30,7 +30,10 @@ class ActivityCondition extends Component {
         <tbody>
           <tr>
             <td>
-              <ActivityBox activity={this.props.activity} />
+              <ActivityBox 
+                activity={this.props.activity} 
+                onCut={this.props.onCut}
+              />
             </td>
           </tr>
           <tr>

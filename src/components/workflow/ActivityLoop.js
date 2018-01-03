@@ -31,7 +31,10 @@ class ActivityParallel extends Component {
         <tbody>
           <tr>
             <td id={"activity-" + this.props.activity._id + "-loop-back"}>
-              <ActivityBox activity={this.props.activity} />
+              <ActivityBox 
+                activity={this.props.activity} 
+                onCut={this.props.onCut}
+              />
             </td>
           </tr>
           <tr>
