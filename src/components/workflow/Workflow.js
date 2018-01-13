@@ -5,7 +5,8 @@ import Activity from './Activity';
 import ZoomSelector from '../common/ZoomSelector';
 import { getJsPlumbInstance, createConnections } from './utils/connectionManager';
 import ActivitySelector from "./ActivitySelector";
-import { loadFakeWorkflow, setCurrentWorkflow } from './redux/actions';
+import ActivityEdit from './ActivityEdit'
+import { loadFakeWorkflow, setCurrentWorkflow, setEditActivity } from './redux/actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
@@ -56,6 +57,7 @@ class Workflow extends Component {
   }
 
   render() {
+    console.log(this.props.editActivity);
     return (
       this.props.workflow ?
         <div>
@@ -68,6 +70,11 @@ class Workflow extends Component {
                 onChange={this.handleOnChangeMainActivity}/>
             </div>
           </div>
+          <ActivityEdit 
+            open={this.props.editType === "Activity"} 
+            activity={this.props.editActivity} 
+            onClose={this.props.onActivityEditClose}
+          />
         </div>
         :
         <div>No workflow</div>
@@ -81,7 +88,9 @@ Workflow.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    workflow: state.workflow.activeWorkflow
+    workflow: state.workflow.activeWorkflow,
+    editType: state.workflow.editType,
+    editActivity: state.workflow.editActivity
   };
 };
 
@@ -92,6 +101,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     onChangeWorkflow: (workflow) => {
       dispatch(setCurrentWorkflow(workflow))
+    },
+    onActivityEditClose: (activity) => {
+      dispatch(setEditActivity(null));
     }
   };
 };

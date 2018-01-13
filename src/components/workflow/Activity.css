@@ -45,6 +45,11 @@
   height: 32px;
   width: 32px;
   fill: #aaaaaa;
+  fill-opacity: 0.5;
+}
+
+.hf-activity-menu:hover{
+  fill-opacity: 1;
 }
 
 .hf-activity-menu button{

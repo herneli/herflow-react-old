@@ -6,7 +6,7 @@ import ActivityType from './classes/ActivityType';
 import AcitivitySelector from './ActivitySelector';
 import { handleOnChangeChildren } from './utils/activityManager';
 import ActivityManager from './classes/ActivityManager';
-import { setActivityClipboard } from './redux/actions'
+import { setActivityClipboard, setEditActivity } from './redux/actions'
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
@@ -68,8 +68,6 @@ class ActivitySequence extends Component {
       ]
     });
     this.props.onChange && this.props.onChange(newActivity);
-
-
     this.props.onActivityCut(activity);
   }
 
@@ -95,6 +93,7 @@ class ActivitySequence extends Component {
             <Activity
               activity={activity}
               onChange={this.handleOnChangeChildren} 
+              onEdit={this.props.onActivityEdit}
               onCut={this.handleOnCut}/>
           </td>
         </tr>
@@ -148,6 +147,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onActivityCut: (activity) => {
       dispatch(setActivityClipboard(activity))
+    },
+    onActivityEdit: (activity) => {
+      dispatch(setEditActivity(activity))
     }
   };
 };

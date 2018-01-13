@@ -12,25 +12,14 @@ class ActivityBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showMenuButton: false,
       menuOpen: false,
       anchorEl: null
     };
     // Bindings
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.handleMenuClick = this.handleMenuClick.bind(this);
     this.handleMenuSelected = this.handleMenuSelected.bind(this);
     this.handleMenuClose = this.handleMenuClose.bind(this);
   }
-
-  handleMouseEnter(){
-    this.setState(_.assign({},this.state,{showMenuButton: true}));
-  }
-
-  handleMouseLeave(){
-    this.setState(_.assign({},this.state,{showMenuButton: false}));
-  }  
 
   handleMenuClick(event) {
     this.setState(_.assign({},this.state,{ menuOpen: true, anchorEl: event.currentTarget }));
@@ -38,9 +27,17 @@ class ActivityBox extends Component {
 
   handleMenuSelected(selected) {
     this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null }));
-    if (selected === 'cut'){
-      this.props.onCut && this.props.onCut(this.props.activity);
+    switch(selected){
+      case 'cut':
+        this.props.onCut && this.props.onCut(this.props.activity);
+        break;
+      case 'edit':
+        this.props.onEdit && this.props.onEdit(this.props.activity);
+        break;
+      default:
+        // Nothing
     }
+
   };
 
   handleMenuClose(){
@@ -90,15 +87,25 @@ class ActivityBox extends Component {
     }
     return activityStatusClass;
   }
+  
+  showCutMenu(){
+    switch(this.props.activity.type){
+      case ActivityType.Initial:
+      case ActivityType.Final:
+      case ActivityType.Sequence:
+        return false;
+      default:
+        return true;
+    }
+  }
 
   render() {
     let activityStatusClass = this.getActivityStatusClass();
     return (
       <div
         id={"activity-" + this.props.activity._id}
-        className={"hf-activity " + this.getActivityClass()}
-        onMouseEnter={this.handleMouseEnter} 
-        onMouseLeave={this.handleMouseLeave} >
+        className={"hf-activity " + this.getActivityClass()} 
+      >
         <div className="hf-activity-icon">
         </div>
         <div className="hf-activity-description ellipsis-2">
@@ -106,13 +113,12 @@ class ActivityBox extends Component {
         </div>
         <div className={"hf-activity-status" + activityStatusClass}>
         </div>
-        {this.state.showMenuButton ?
           <div className="hf-activity-menu">
             <IconButton
               aria-owns={'simple-menu'}
               aria-haspopup="true"
               onClick={this.handleMenuClick}>
-              <DotsVerticalIcon/>
+              <DotsVerticalIcon className="hf-dots-menu"/>
             </IconButton>
             <Menu
               id="simple-menu"
@@ -121,11 +127,9 @@ class ActivityBox extends Component {
               onClose={this.handleMenuClose}
             >
               <MenuItem onClick={() => this.handleMenuSelected("edit")}><T.span text="edit" /></MenuItem>
-              <MenuItem onClick={() => this.handleMenuSelected("cut")}><T.span text="cut" /></MenuItem>
+              {this.showCutMenu() ? <MenuItem onClick={() => this.handleMenuSelected("cut")}><T.span text="cut" /></MenuItem> : null}
             </Menu>            
           </div> 
-          : null 
-        }
       </div>
     );
   }
