@@ -20,9 +20,11 @@ export function handleOnChangeChildren(activity) {
 export function generateActivity(type) {
   switch (type) {
     case ActivityType.Task:
+      console.log("New task");
       return {
         _id: ObjectID().toHexString(),
         name: T.translate("workflow.newTask"),
+        hasErrors: true,
         type: type
       };
     case ActivityType.Email:

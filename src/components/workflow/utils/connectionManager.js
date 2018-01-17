@@ -29,9 +29,6 @@ function getJsPlumbInstance() {
 
 function connect(jsPlumbInstance, source, destination,options) {
   let connectObject = _.assign({},{ source: source, target: destination},options);
-  if (options){
-    console.log(connectObject);
-  }
   jsPlumbInstance.connect(connectObject);
 }
 
@@ -72,7 +69,6 @@ function createConnections(jsPlumbInstance, activity) {
           connect(jsPlumbInstance, parallelNode.final, finalPointId);
           if (activity.type === ActivityType.Loop){
             let loopBackId = activityId + "-loop-back";
-            console.log(loopBackId);
             connect(jsPlumbInstance, finalPointId, loopBackId,{anchor: "Left"});
             connect(jsPlumbInstance, loopBackId,activityId,{anchor: "Left", overlays: [["Arrow", arrowOverlay]]});
           }

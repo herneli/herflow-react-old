@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import ActivityType from './classes/ActivityType';
 import ActivityStatus from './ActivityStatus';
+import ActivityEdit from './ActivityEdit';
 import IconButton from 'material-ui/IconButton';
 import DotsVerticalIcon from 'mdi-react/DotsVerticalIcon';
 import Menu, { MenuItem } from 'material-ui/Menu';
+import AlertDecagram from 'mdi-react/AlertDecagramIcon';
 import _ from 'lodash';
 import T from 'i18n-react';
 import './Activity.css';
@@ -13,12 +15,14 @@ class ActivityBox extends Component {
     super(props);
     this.state = {
       menuOpen: false,
-      anchorEl: null
+      anchorEl: null,
+      edit: false
     };
     // Bindings
     this.handleMenuClick = this.handleMenuClick.bind(this);
     this.handleMenuSelected = this.handleMenuSelected.bind(this);
     this.handleMenuClose = this.handleMenuClose.bind(this);
+    this.handleOnEditClose = this.handleOnEditClose.bind(this);
   }
 
   handleMenuClick(event) {
@@ -26,13 +30,14 @@ class ActivityBox extends Component {
   };
 
   handleMenuSelected(selected) {
-    this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null }));
+    
     switch(selected){
       case 'cut':
+        this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null }));
         this.props.onCut && this.props.onCut(this.props.activity);
         break;
       case 'edit':
-        this.props.onEdit && this.props.onEdit(this.props.activity);
+        this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null, edit: true }));
         break;
       default:
         // Nothing
@@ -43,6 +48,14 @@ class ActivityBox extends Component {
   handleMenuClose(){
     this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null }));
   }
+
+  handleOnEditClose(activity){
+    this.setState(_.assign({},this.state,{ edit: false }));
+    if (activity){
+      this.props.onChange && this.props.onChange(activity);
+    }
+  }
+
   getActivityClass() {
     switch (this.props.activity.type) {
       case ActivityType.Initial:
@@ -100,6 +113,7 @@ class ActivityBox extends Component {
   }
 
   render() {
+    console.log(this.props.activity);
     let activityStatusClass = this.getActivityStatusClass();
     return (
       <div
@@ -108,6 +122,11 @@ class ActivityBox extends Component {
       >
         <div className="hf-activity-icon">
         </div>
+        {this.props.activity.hasErrors ? 
+          <div className="hf-activity-alert">
+            <AlertDecagram />
+          </div> : null 
+        }
         <div className="hf-activity-description ellipsis-2">
           <p>{this.props.activity.name}</p>
         </div>
@@ -128,7 +147,13 @@ class ActivityBox extends Component {
             >
               <MenuItem onClick={() => this.handleMenuSelected("edit")}><T.span text="edit" /></MenuItem>
               {this.showCutMenu() ? <MenuItem onClick={() => this.handleMenuSelected("cut")}><T.span text="cut" /></MenuItem> : null}
-            </Menu>            
+            </Menu>       
+            {this.state.edit ?      
+            <ActivityEdit 
+              open={this.state.edit}
+              activity={this.props.activity}
+              onClose={this.handleOnEditClose}
+            />: null }
           </div> 
       </div>
     );

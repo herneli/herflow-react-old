@@ -38,6 +38,17 @@
   top: 0px;
 }
 
+.hf-activity-alert {
+  position: absolute;
+  top: 5px;
+  left: -20px;
+  fill: red;
+}
+
+.hf-activity-alert svg{
+  width: 16px;
+}
+
 .hf-activity-menu{
   position: absolute;
   top: 0px;

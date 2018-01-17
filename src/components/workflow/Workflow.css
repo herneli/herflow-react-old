@@ -3,6 +3,15 @@
   /* text-align: center; */
 }
 
+.hf-activity-wrapper{
+  margin: 20px;
+  padding: 20px;
+}
+
+.hf-dialog-full > div {
+  background-color: #f1eeee;
+}
+
 table.hf-workflow{
   border-collapse: separate;
   border-spacing: 0px;

@@ -36,6 +36,7 @@ static generateActivity(type) {
         return {
           _id: ObjectID().toHexString(),
           name: T.translate("workflow.newTask"),
+          hasErrors: true,
           type: type
         };
       case ActivityType.Email:
@@ -48,6 +49,7 @@ static generateActivity(type) {
         return {
           _id: ObjectID().toHexString(),
           name: T.translate("workflow.newCondition"),
+          hasErrors: true,
           type: type,
           childrenActivities: [
             {

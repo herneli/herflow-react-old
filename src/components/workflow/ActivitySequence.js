@@ -6,8 +6,6 @@ import ActivityType from './classes/ActivityType';
 import AcitivitySelector from './ActivitySelector';
 import { handleOnChangeChildren } from './utils/activityManager';
 import ActivityManager from './classes/ActivityManager';
-import { setActivityClipboard, setEditActivity } from './redux/actions'
-import { connect } from 'react-redux';
 import _ from 'lodash';
 
 class ActivitySequence extends Component {
@@ -137,21 +135,5 @@ class ActivitySequence extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    activityClipboard: state.workflow.activityClipboard
-  };
-};
+export default ActivitySequence;
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onActivityCut: (activity) => {
-      dispatch(setActivityClipboard(activity))
-    },
-    onActivityEdit: (activity) => {
-      dispatch(setEditActivity(activity))
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ActivitySequence);
