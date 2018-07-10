@@ -4,8 +4,8 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import T from 'i18n-react';
 import PropTypes from 'prop-types';
 import { setSession, setLanguage, logoutGoogle } from 'common/session/actions';
-import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
-import blue from 'material-ui/colors/blue';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
 import Workflow from '../workflow/Workflow';
 import Layout from './Layout';
 

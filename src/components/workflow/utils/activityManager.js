@@ -13,14 +13,12 @@ export function handleOnChangeChildren(activity) {
   ];
   let newActivity = _.assign({}, this.props.activity, { childrenActivities: newChildren });
 
-  console.log(newActivity);
   this.props.onChange && this.props.onChange(newActivity);
 }
 
 export function generateActivity(type) {
   switch (type) {
     case ActivityType.Task:
-      console.log("New task");
       return {
         _id: ObjectID().toHexString(),
         name: T.translate("workflow.newTask"),

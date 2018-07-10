@@ -4,7 +4,6 @@ import './Workflow.css';
 import Activity from './Activity';
 import ZoomSelector from '../common/ZoomSelector';
 import { getJsPlumbInstance, createConnections } from './utils/connectionManager';
-import ActivitySelector from "./ActivitySelector";
 import { loadFakeWorkflow, setCurrentWorkflow } from './redux/actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
@@ -59,7 +58,7 @@ class Workflow extends Component {
       this.props.workflow ?
         <div>
           <ZoomSelector onSelected={this.handleZoomSelected}/>
-          <ActivitySelector />
+
           <div>
             <div id="workflow-canvas" style={{zoom: this.state.zoom}}>
               <Activity 

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import Dialog, { DialogTitle } from 'material-ui/Dialog';
-import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
+import Dialog  from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
 import ActivityType from './classes/ActivityType';
 import ImageTask from './images/activity-task-32.png';
 import ImageCondition from './images/activity-condition-32.png';
@@ -67,9 +70,7 @@ class ActivitySelector extends Component {
           <List>
             {this.getActivities().map((activity,index) => (
               <ListItem button onClick={() => this.handleListItemClick(activity)} key={index}>
-                <ListItemAvatar>
-                  <Avatar src={activity.image} style={{height: 24,width: 24}} />
-                </ListItemAvatar>
+                <Avatar src={activity.image} style={{height: 24,width: 24}} />
                 <ListItemText primary={activity.text} />
               </ListItem>
             ))}

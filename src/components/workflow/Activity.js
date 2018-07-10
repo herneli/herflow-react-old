@@ -15,7 +15,9 @@ class Activity extends Component {
         return <ActivitySequence 
                   activity={this.props.activity} 
                   onChange={this.props.onChange}
-                  onCut={this.props.onCut}/>;
+                  onCut={this.props.onCut}
+                  activityClipboard={this.props.activityClipboard}
+                  />;
       case ActivityType.Parallel:
         return <ActivityParallel 
                   activity={this.props.activity}  

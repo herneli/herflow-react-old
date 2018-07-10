@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import ActivityType from './classes/ActivityType';
 import ActivityStatus from './ActivityStatus';
 import ActivityEdit from './ActivityEdit';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import DotsVerticalIcon from 'mdi-react/DotsVerticalIcon';
-import Menu, { MenuItem } from 'material-ui/Menu';
+import Menu from '@material-ui/core/Menu';
+import MenuItem  from '@material-ui/core/MenuItem';
 import AlertDecagram from 'mdi-react/AlertDecagramIcon';
 import _ from 'lodash';
 import T from 'i18n-react';
@@ -113,7 +114,6 @@ class ActivityBox extends Component {
   }
 
   render() {
-    console.log(this.props.activity);
     let activityStatusClass = this.getActivityStatusClass();
     return (
       <div

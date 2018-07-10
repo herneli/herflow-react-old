@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import Dialog from 'material-ui/Dialog';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
-import TextField from 'material-ui/TextField';
-import CloseIcon from 'material-ui-icons/Close';
-import Slide from 'material-ui/transitions/Slide';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import CloseIcon from '@material-ui/icons/Close';
+import Slide from '@material-ui/core/Slide';
 import T from 'i18n-react';
 import _ from 'lodash';
 
@@ -71,19 +71,19 @@ class ActivityEdit extends React.Component {
       <Dialog
         fullScreen
         open={this.props.open}
-        transition={Transition}
+        TransitionComponent={Transition}
         className={"hf-dialog-full"}
       >
 
         <AppBar className={classes.appBar}>
           <Toolbar>
-            <IconButton color="contrast" onClick={this.handleOnClose} aria-label="Close">
+            <IconButton color="inherit" onClick={this.handleOnClose} aria-label="Close">
               <CloseIcon />
             </IconButton>
             <Typography type="title" color="inherit" className={classes.flex}>
               {this.props.activity.name}
             </Typography>
-            <Button color="contrast" onClick={this.handleOnSave}>
+            <Button color="inherit" onClick={this.handleOnSave}>
               <T.span text="save" />
             </Button>
           </Toolbar>

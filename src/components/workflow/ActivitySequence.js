@@ -48,14 +48,14 @@ class ActivitySequence extends Component {
       this.props.onChange && this.props.onChange(newActivity);
 
       if (activity.type === 'clipboard'){
-        this.props.onActivityCut(null);
+        this.props.onCut(null);
       }
     }
     this.setState({ insertDialog: false });
   }
 
   handleOnCut(activity){
-    
+    console.log("cut seq")
     // Remove from current sequence
     let children = this.getChildrenActivities();
     let activityIndex = _.findIndex(children,{'_id': activity._id});
@@ -66,7 +66,7 @@ class ActivitySequence extends Component {
       ]
     });
     this.props.onChange && this.props.onChange(newActivity);
-    this.props.onActivityCut(activity);
+    this.props.onCut && this.props.onCut(activity);
   }
 
   renderChildrenActivities() {
