@@ -7,6 +7,8 @@ import AcitivitySelector from './ActivitySelector';
 import { handleOnChangeChildren } from './utils/activityManager';
 import ActivityManager from './classes/ActivityManager';
 import _ from 'lodash';
+import { setActivityClipboard } from './redux/actions'
+import { connect } from 'react-redux';
 
 class ActivitySequence extends Component {
   constructor(props) {
@@ -48,14 +50,13 @@ class ActivitySequence extends Component {
       this.props.onChange && this.props.onChange(newActivity);
 
       if (activity.type === 'clipboard'){
-        this.props.onCut(null);
+        this.props.resetClipboard(null);
       }
     }
     this.setState({ insertDialog: false });
   }
 
   handleOnCut(activity){
-    console.log("cut seq")
     // Remove from current sequence
     let children = this.getChildrenActivities();
     let activityIndex = _.findIndex(children,{'_id': activity._id});
@@ -65,8 +66,8 @@ class ActivitySequence extends Component {
         ...children.slice(activityIndex+1, children.length)
       ]
     });
+    this.props.saveToClipboard(activity);
     this.props.onChange && this.props.onChange(newActivity);
-    this.props.onCut && this.props.onCut(activity);
   }
 
   renderChildrenActivities() {
@@ -135,5 +136,23 @@ class ActivitySequence extends Component {
   }
 }
 
-export default ActivitySequence;
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    activityClipboard: state.workflow.activityClipboard
+  };
+};
+
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    resetClipboard: () => {
+      dispatch(setActivityClipboard(null))
+    },
+    saveToClipboard: (activity) => {
+      dispatch(setActivityClipboard(activity))
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActivitySequence);

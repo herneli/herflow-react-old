@@ -33,7 +33,6 @@ function connect(jsPlumbInstance, source, destination,options) {
 }
 
 function createConnections(jsPlumbInstance, activity) {
-
   let returnNode;
   let nodes = [];
   let activityId = 'activity-' + activity._id;

@@ -6,12 +6,12 @@ import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import ActivityType from './classes/ActivityType';
+import ActivityTaskEditor from "./editors/ActivityTaskEditor";
 import T from 'i18n-react';
 import _ from 'lodash';
 
@@ -60,6 +60,26 @@ class ActivityEdit extends React.Component {
   handleOnSave(){
     this.props.onClose && this.props.onClose(this.state.activity);
   }
+
+  getEditor(activity){
+      switch (this.props.activity.type) {
+        case ActivityType.Sequence:
+        case ActivityType.Parallel:
+        case ActivityType.Loop:
+        case ActivityType.Condition:
+        case ActivityType.Initial:
+        case ActivityType.Final:
+        case ActivityType.Task:
+        case ActivityType.Approval:
+        case ActivityType.Email:
+          return <ActivityTaskEditor 
+            activity={this.props.activity}
+            onClose={this.handleOnClose} 
+            onSave={this.handleOnSave} />
+        default:
+          return <div>Component {this.props.activity.type} not defined</div>
+      }
+  }
   
 
   render() {
@@ -88,22 +108,9 @@ class ActivityEdit extends React.Component {
             </Button>
           </Toolbar>
         </AppBar>
-        <Grid container className={"xxx"}>
+        <Grid container>
           <Grid item xs={12}>
-            <Paper className="hf-activity-wrapper">
-              <Grid container>
-                <Grid item xs={12}>
-                  <TextField
-                    value={this.state.activity.name}
-                    label={"Nombre"} fullWidth
-                    margin="normal"
-                    onChange={(event) => {
-                      this.handleOnChange("name", event.target.value)
-                    }}
-                  />
-                </Grid>
-              </Grid>
-            </Paper>
+            {this.getEditor}
           </Grid>
         </Grid>
       </Dialog>

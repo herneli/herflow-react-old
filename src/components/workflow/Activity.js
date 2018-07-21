@@ -5,8 +5,6 @@ import ActivityParallel from './ActivityParallel';
 import ActivityLoop from './ActivityLoop';
 import ActivityCondition from './ActivityCondition';
 import ActivityBox from './ActivityBox';
-import { setActivityClipboard } from './redux/actions'
-import { connect } from 'react-redux';
 
 class Activity extends Component {
   getActivityComponent() {
@@ -15,9 +13,7 @@ class Activity extends Component {
         return <ActivitySequence 
                   activity={this.props.activity} 
                   onChange={this.props.onChange}
-                  onCut={this.props.onCut}
-                  activityClipboard={this.props.activityClipboard}
-                  />;
+                  onCut={this.props.onCut} />;
       case ActivityType.Parallel:
         return <ActivityParallel 
                   activity={this.props.activity}  
@@ -52,19 +48,4 @@ class Activity extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    activityClipboard: state.workflow.activityClipboard
-  };
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onCut: (activity) => {
-      dispatch(setActivityClipboard(activity))
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Activity);
-
+export default Activity;
