@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './components/App/App';
 import sessionReducer from './common/session/reducer';
-import workflowReducer from './components/workflow/redux/reducer';
+import workflowReducer from './components/Workflow/redux/reducer';
 import appReducer from './components/App/redux/reducer';
 // Reducers
 let rootReducer = combineReducers({

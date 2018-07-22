@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ActivityLabel from './ActivityLabel';
-import ActivityInsert from './ActivityInsert';
-import AcitivitySelector from './ActivitySelector';
+import ActivityLabel from '../../common/ActivityLabel';
+import ActivityInsert from '../../common/ActivityInsert';
+import AcitivitySelector from '../../common/ActivitySelector';
 import _ from 'lodash';
 import './ActivitySequence.css';  
 

@@ -80,37 +80,37 @@
 }
 
 .hf-activity-initial .hf-activity-icon{
-  background: #ffffff url("images/activity-initial-32.png") no-repeat;
+  background: #ffffff url("../images/activity-initial-32.png") no-repeat;
 }
 
 .hf-activity-final .hf-activity-icon{
-  background: #ffffff url("images/activity-final-32.png") no-repeat;
+  background: #ffffff url("../images/activity-final-32.png") no-repeat;
 }
 
 .hf-activity-task .hf-activity-icon{
-  background: #ffffff url("images/activity-task-32.png") no-repeat;
+  background: #ffffff url("../images/activity-task-32.png") no-repeat;
 }
 
 .hf-activity-condition .hf-activity-icon{
-  background: #ffffff url("images/activity-condition-32.png") no-repeat;
+  background: #ffffff url("../images/activity-condition-32.png") no-repeat;
 }
 
 
 .hf-activity-automatic .hf-activity-icon{
-  background: #ffffff url("images/activity-automatic-32.png") no-repeat;
+  background: #ffffff url("../images/activity-automatic-32.png") no-repeat;
 }
 
 
 .hf-activity-email .hf-activity-icon{
-  background: #ffffff url("images/activity-email-32.png") no-repeat;
+  background: #ffffff url("../images/activity-email-32.png") no-repeat;
 }
 
 .hf-activity-branch .hf-activity-icon{
-  background: #ffffff url("images/activity-branch-32.png") no-repeat;
+  background: #ffffff url("../images/activity-branch-32.png") no-repeat;
 }
 
 .hf-activity-loop .hf-activity-icon{
-  background: #ffffff url("images/activity-loop-32.png") no-repeat;
+  background: #ffffff url("../images/activity-loop-32.png") no-repeat;
 }
 
 .hf-final-point{
@@ -126,7 +126,7 @@
   width: 24px;
   display: inline-block;
   position: relative;
-  background: transparent url("images/loop-back.png") no-repeat;
+  background: transparent url("../images/loop-back.png") no-repeat;
   z-index: 1;
 }
 
@@ -155,7 +155,7 @@
   width: 20px;
   height: 20px;
   position: relative;
-  background: transparent url("images/plus-circle.png") no-repeat;
+  background: transparent url("../images/plus-circle.png") no-repeat;
   z-index: 1;
   margin-top: 10px;
   margin-bottom: 10px;

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import ActivityBox from './ActivityBox';
+import { Component } from 'react';
 import './ActivityFinal.css';
-import Image from './images/activity-final-32.png';
+import Image from '../../images/activity-final-32.png';
 
 class Activity extends Component {
     constructor(props) {
@@ -15,11 +14,7 @@ class Activity extends Component {
     
     render() {
         return (
-            <ActivityBox 
-                activity={this.props.activity}
-                onCut={this.props.onCut}
-                onEdit={this.handleOnEdit}
-                onChange={this.props.onChange}/>
+            this.props.manager.renderActivityBox(this.props)
         );
     }
 }

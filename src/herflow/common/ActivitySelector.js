@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import T from 'i18n-react';
-import ImageClipboard from './images/clipboard.png';
+import ImageClipboard from '../images/clipboard.png';
 
 class ActivitySelector extends Component {
   getActivities(){

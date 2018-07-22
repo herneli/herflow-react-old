@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import fakeWorkflow from './fakeWorkflow';
-import { setCurrentWorkflow } from '../redux/actions';
+import { setCurrentWorkflow } from './redux/actions';
 import { connect } from 'react-redux';
-import Workflow from '../Workflow';
+import Workflow from 'herflow/Workflow';
 
 class WorkflowDev extends Component {
     componentDidMount() {

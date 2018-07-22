@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { setSession, setLanguage, logoutGoogle } from 'common/session/actions';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
-import WorkflowDev from '../workflow/dev/WorkflowDev';
+import WorkflowDev from '../Workflow';
 import Layout from './Layout';
 
 const theme = createMuiTheme({

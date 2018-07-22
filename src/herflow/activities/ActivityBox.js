@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ActivityStatus from './ActivityStatus';
+import ActivityStatus from '../common/ActivityStatus';
 import IconButton from '@material-ui/core/IconButton';
 import DotsVerticalIcon from 'mdi-react/DotsVerticalIcon';
 import Menu from '@material-ui/core/Menu';

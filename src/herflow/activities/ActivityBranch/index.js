@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import ActivityBox from './ActivityBox';
-import ActivityFinalPoint from './ActivityFinalPoint';
-import Image from './images/activity-condition-32.png';
+import ActivityFinalPoint from '../../common/ActivityFinalPoint';
+import Image from '../../images/activity-branch-32.png';
 import T from 'i18n-react';
-import './ActivityCondition.css';
+import './ActivityBranch.css';
 
-class Activity extends Component {
+class Branch extends Component {
   constructor(props) {
     super(props);
     this.handleOnChangeChildren = this.props.manager.handleOnChangeChildren.bind(this);
@@ -34,11 +33,7 @@ class Activity extends Component {
         <tbody>
           <tr>
             <td>
-              <ActivityBox
-                activity={this.props.activity}
-                onCut={this.props.onCut}
-                onEdit={this.props.onEdit}
-                onChange={this.props.onChange} />
+              {this.props.manager.renderActivityBox(this.props)}
             </td>
           </tr>
           <tr>
@@ -64,28 +59,28 @@ class Activity extends Component {
 }
 
 export default {
-  type: "Condition",
-  name: 'activity.condition',
+  type: "Branch",
+  name: 'activity.branch',
   image: Image,
-  ActivityChart: Activity,
+  ActivityChart: Branch,
   createConnections(manager, activity) {
     return manager.createConnectionsParallel(activity);
   },
   generateActivity: (manager) => {
     return {
       id: manager.newId(),
-      name: T.translate("activity.newCondition"),
-      type: "Condition",
+      name: T.translate("activity.newBranch"),
+      type: "Branch",
       childrenActivities: [
         {
           id: manager.newId(),
           type: "Sequence",
-          label: T.translate("activity.conditionTrue")
+          label: T.translate("activity.branchNumber", { branchNumber: 1 })
         },
         {
           id: manager.newId(),
           type: "Sequence",
-          label: T.translate("activity.conditionFalse")
+          label: T.translate("activity.branchNumber", { branchNumber: 2 })
         }
       ]
     }

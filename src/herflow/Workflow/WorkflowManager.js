@@ -1,13 +1,14 @@
+import React from 'react';
 import 'jsplumb';
-import ActivityInitial from './activities/ActivityInitial';
-import ActivityFinal from './activities/ActivityFinal';
-import ActivityTask from './activities/ActivityTask';
-import ActivityEmail from './activities/ActivityEmail';
-import ActivitySequence from './activities/ActivitySequence';
-import ActivityBranch from './activities/ActivityBranch';
-import ActivityLoop from './activities/ActivityLoop';
-import ActivityCondition from './activities/ActivityCondition';
-
+import ActivityBox from '../activities/ActivityBox';
+import ActivityInitial from '../activities/ActivityInitial';
+import ActivityFinal from '../activities/ActivityFinal';
+import ActivityTask from '../activities/ActivityTask';
+import ActivityEmail from '../activities/ActivityEmail';
+import ActivitySequence from '../activities/ActivitySequence';
+import ActivityBranch from '../activities/ActivityBranch';
+import ActivityLoop from '../activities/ActivityLoop';
+import ActivityCondition from '../activities/ActivityCondition';
 import { ObjectID } from 'bson';
 import _ from 'lodash';
 
@@ -81,6 +82,16 @@ class WorkflowManager {
       } else {
         throw Error("Activity " + activity.type + " not found");
       }
+    }
+
+    renderActivityBox(props){
+      return (      
+        <ActivityBox 
+          activity={props.activity}
+          onCut={props.onCut}
+          onEdit={props.onEdit}
+          onChange={props.onChange}/>
+      );
     }
 
     generateActivity(type) {

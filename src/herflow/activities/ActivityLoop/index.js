@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import ActivityBox from './ActivityBox';
-import ActivityFinalPoint from './ActivityFinalPoint';
-import Image from './images/activity-loop-32.png';
+import ActivityFinalPoint from '../../common/ActivityFinalPoint';
+import Image from '../../images/activity-loop-32.png';
 import T from 'i18n-react';
 import './ActivityLoop.css';
 
@@ -35,11 +34,7 @@ class Activity extends Component {
         <tbody>
           <tr>
             <td id={"activity-" + this.props.activity.id + "-loop-back"}>
-              <ActivityBox
-                  activity={this.props.activity}
-                  onCut={this.props.onCut}
-                  onEdit={this.props.onEdit}
-                  onChange={this.props.onChange} />
+              {this.props.manager.renderActivityBox(this.props)}
             </td>
           </tr>
           <tr>

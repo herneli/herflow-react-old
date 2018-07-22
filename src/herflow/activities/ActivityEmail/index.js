@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
-import ActivityBox from './ActivityBox';
+import { Component } from 'react';
 import './ActivityEmail.css';
 import T from 'i18n-react';
-import Image from './images/activity-email-32.png';
+import Image from '../../images/activity-email-32.png';
+import './ActivityEmail.css';
 
 class Activity extends Component {
     render() {
         return (
-            <ActivityBox 
-                activity={this.props.activity}
-                onCut={this.props.onCut}
-                onEdit={this.props.onEdit}
-                onChange={this.props.onChange}/>
+            this.props.manager.renderActivityBox(this.props)
         );
     }
 }

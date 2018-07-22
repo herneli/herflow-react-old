@@ -1,5 +1,5 @@
 .hf-activity-loop .hf-activity-icon{
-    background: #ffffff url("images/activity-loop-32.png") no-repeat;
+    background: #ffffff url("../../images/activity-loop-32.png") no-repeat;
 }
 
 .hf-loop-back{
@@ -7,6 +7,6 @@
     width: 24px;
     display: inline-block;
     position: relative;
-    background: transparent url("images/loop-back.png") no-repeat;
+    background: transparent url("../../images/loop-back.png") no-repeat;
     z-index: 1;
 }

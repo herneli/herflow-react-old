@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Activity from './Activity';
 import ActivityBox from './ActivityBox';
-import ActivityFinalPoint from './ActivityFinalPoint';
+import ActivityFinalPoint from '../common/ActivityFinalPoint';
 import {handleOnChangeChildren} from './utils/activityManager';
 
 class ActivityCondition extends Component {

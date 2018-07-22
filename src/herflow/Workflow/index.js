@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import WorkflowManager from './WorkflowManager';
-import ZoomSelector from './ZoomSelector';
+import ZoomSelector from '../common/ZoomSelector';
 import _ from 'lodash';
 import './Workflow.css';
 
