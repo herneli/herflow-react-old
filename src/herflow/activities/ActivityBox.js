@@ -60,19 +60,19 @@ class ActivityBox extends Component {
 
   getActivityStatusClass(){
     let activityStatusClass = "";
-    if (this.props.activity.isInstance) {
+    if (this.props.workflow.isInstance) {
       switch (this.props.activity.status) {
         case ActivityStatus.Closed:
-          activityStatusClass = " rc-activity-closed";
+          activityStatusClass = " hf-activity-closed";
           break;
         case ActivityStatus.Started:
-          activityStatusClass = " rc-activity-started";
+          activityStatusClass = " hf-activity-started";
           break;
         case ActivityStatus.Cancelled:
-          activityStatusClass = " rc-activity-cancelled";
+          activityStatusClass = " hf-activity-cancelled";
           break;
         default:
-          activityStatusClass = " rc-activity-cancelled";
+          activityStatusClass = "";
       }
     }
     return activityStatusClass;

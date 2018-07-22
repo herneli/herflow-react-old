@@ -87,6 +87,7 @@ class ActivitySequence extends Component {
           <td>
             <ActivityChart
               manager={this.props.manager}
+              workflow={this.props.workflow}
               activity={activity}
               onChange={this.handleOnChangeChildren} 
               onCut={this.handleOnCut}/>

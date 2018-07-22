@@ -20,9 +20,9 @@ class ActivityBranch extends Component {
         <td key={activity.id}>
           <ActivityChart
             manager={this.props.manager}
+            workflow={this.props.workflow}
             activity={activity}
-            onChange={this.handleOnChangeChildren}
-            onCut={this.handleOnCut} />
+            onChange={this.handleOnChangeChildren} />
         </td>
       );
     });

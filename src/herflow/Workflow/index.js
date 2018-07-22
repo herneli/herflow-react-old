@@ -27,8 +27,6 @@ class Workflow extends Component {
     }
   }
   
-  
-
   componentDidUpdate(prevProps, prevState) {
     this.repaint();
   }
@@ -63,6 +61,7 @@ class Workflow extends Component {
               <div id="workflow-canvas" style={{ zoom: this.state.zoom }}>
                 <ActivityChart
                   manager={this.manager}
+                  workflow={this.props.workflow}
                   activity={this.props.workflow.mainActivity}
                   onChange={this.handleOnChangeMainActivity} />
               </div>

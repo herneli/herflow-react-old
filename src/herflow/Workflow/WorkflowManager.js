@@ -51,9 +51,6 @@ class WorkflowManager {
       // Bindings
       this.createConnections = this.createConnections.bind(this);
       this.connect = this.connect.bind(this);
-
-      // Set workflow
-      this.workflow = workflow;
     }
 
     registerActivity(registerActivity){
@@ -90,6 +87,7 @@ class WorkflowManager {
     renderActivityBox(props){
       return (      
         <ActivityBox 
+          workflow={props.workflow}
           activity={props.activity}
           onCut={props.onCut}
           onEdit={props.onEdit}
