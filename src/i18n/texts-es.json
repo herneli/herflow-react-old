@@ -12,6 +12,7 @@
   "loading": "Cargando...",
   "no": "No",
   "noDataToShow": "No hay elementos a mostrar",
+  "required": "Obligatorio",
   "saving": "Guardando...",
   "save": "Guardar",
   "saveAndClose": "Guardar y cerrar",
@@ -20,21 +21,23 @@
   "sending": "Enviando...",
   "yes": "Sí",
   "workflow": {
-    "branch": "Rama {branchNumber}",
-    "clipboard": "Portapapeles",
+    "selectActivity": "Seleccionar actividad"
+  },
+  "activity": {
+    "task": "Tarea",
+    "newTask": "Nueva tarea",
+    "branch": "Ejecución paralela",
+    "newBranch": "Nueva ejecución paralela",
+    "branchNumber": "Rama {branchNumber}",
+    "loop": "Repetir",
+    "newLoop": "Repetir",
     "condition": "Condición",
+    "newCondition": "Condición",
     "conditionTrue": "Sí",
     "conditionFalse": "No",
     "email": "Email",
-    "loop": "Repetir",
-    "newCondition": "Condición",
     "newEmail": "e-Mail",
-    "newLoop": "Repetir",
-    "newParallel": "Ejecución paralela",
-    "newTask": "Tarea",
-    "parallel": "Ejecución paralela",
-    "selectActivity": "Seleccionar actividad",
-    "task": "Tarea"
+    "clipboard": "Portapapeles" 
   },
   "common": {
     "connecting": "Conectando...",

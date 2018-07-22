@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { setSession, setLanguage, logoutGoogle } from 'common/session/actions';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
-import Workflow from '../workflow/Workflow';
+import WorkflowDev from '../workflow/dev/WorkflowDev';
 import Layout from './Layout';
 
 const theme = createMuiTheme({
@@ -26,7 +26,7 @@ class App extends Component {
             <MuiThemeProvider theme={theme}>
                 <Layout>
                     <Switch>
-                        <Route exact path="/" component={Workflow} />
+                        <Route exact path="/" component={WorkflowDev} />
                     </Switch>
                 </Layout>
             </MuiThemeProvider>

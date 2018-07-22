@@ -1,0 +1,133 @@
+import React, { Component } from 'react';
+import ActivityStatus from './ActivityStatus';
+import IconButton from '@material-ui/core/IconButton';
+import DotsVerticalIcon from 'mdi-react/DotsVerticalIcon';
+import Menu from '@material-ui/core/Menu';
+import MenuItem  from '@material-ui/core/MenuItem';
+import AlertDecagram from 'mdi-react/AlertDecagramIcon';
+import _ from 'lodash';
+import T from 'i18n-react';
+import './Activity.css';
+
+class ActivityBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuOpen: false,
+      anchorEl: null,
+    };
+    // Bindings
+    this.handleMenuClick = this.handleMenuClick.bind(this);
+    this.handleMenuSelected = this.handleMenuSelected.bind(this);
+    this.handleMenuClose = this.handleMenuClose.bind(this);
+    this.handleOnEditClose = this.handleOnEditClose.bind(this);
+  }
+
+  handleMenuClick(event) {
+    this.setState(_.assign({},this.state,{ menuOpen: true, anchorEl: event.currentTarget }));
+  };
+
+  handleMenuSelected(selected) {
+    switch(selected){
+      case 'cut':
+        this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null }));
+        this.props.onCut && this.props.onCut(this.props.activity);
+        break;
+      case 'edit':
+        this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null }));
+        this.props.onEdit && this.props.onEdit();
+        break;
+      default:
+        // Nothing
+    }
+
+  };
+
+  handleMenuClose(){
+    this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null }));
+  }
+
+  handleOnEditClose(activity){
+    this.setState(_.assign({},this.state,{ edit: false }));
+    if (activity){
+      this.props.onChange && this.props.onChange(activity);
+    }
+  }
+
+  getActivityClass() {
+    return "hf-activity-" + _.kebabCase(this.props.activity.type);
+  }
+
+  getActivityStatusClass(){
+    let activityStatusClass = "";
+    if (this.props.activity.isInstance) {
+      switch (this.props.activity.status) {
+        case ActivityStatus.Closed:
+          activityStatusClass = " rc-activity-closed";
+          break;
+        case ActivityStatus.Started:
+          activityStatusClass = " rc-activity-started";
+          break;
+        case ActivityStatus.Cancelled:
+          activityStatusClass = " rc-activity-cancelled";
+          break;
+        default:
+          activityStatusClass = " rc-activity-cancelled";
+      }
+    }
+    return activityStatusClass;
+  }
+  
+  showCutMenu(){
+    switch(this.props.activity.type){
+      case "Initial":
+      case "Final":
+      case "Sequence":
+        return false;
+      default:
+        return true;
+    }
+  }
+
+  render() {
+    let activityStatusClass = this.getActivityStatusClass();
+    return (
+      <div
+        id={"activity-" + this.props.activity.id}
+        className={"hf-activity " + this.getActivityClass()} 
+      >
+        <div className="hf-activity-icon">
+        </div>
+        {this.props.activity.errors ? 
+          <div className="hf-activity-alert">
+            <AlertDecagram />
+          </div> : null 
+        }
+        <div className="hf-activity-description ellipsis-2">
+          <p>{this.props.activity.name}</p>
+        </div>
+        <div className={"hf-activity-status" + activityStatusClass}>
+        </div>
+          <div className="hf-activity-menu">
+            <IconButton
+              aria-owns={'simple-menu'}
+              aria-haspopup="true"
+              onClick={this.handleMenuClick}>
+              <DotsVerticalIcon className="hf-dots-menu"/>
+            </IconButton>
+            <Menu
+              id="simple-menu"
+              anchorEl={this.state.anchorEl}
+              open={this.state.menuOpen}
+              onClose={this.handleMenuClose}
+            >
+              <MenuItem onClick={() => this.handleMenuSelected("edit")}><T.span text="edit" /></MenuItem>
+              {this.showCutMenu() ? <MenuItem onClick={() => this.handleMenuSelected("cut")}><T.span text="cut" /></MenuItem> : null}
+            </Menu>       
+          </div> 
+      </div>
+    );
+  }
+}
+
+export default ActivityBox;
