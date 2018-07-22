@@ -25,7 +25,7 @@ const defaultPaintStyle = {
 };
 
 class WorkflowManager {
-    constructor() {
+    constructor(workflow) {
       // Create jsPlumbInstance
       let jsPlumb = window.jsPlumb;
       this.jsPlumbInstance = jsPlumb.getInstance();
@@ -51,6 +51,9 @@ class WorkflowManager {
       // Bindings
       this.createConnections = this.createConnections.bind(this);
       this.connect = this.connect.bind(this);
+
+      // Set workflow
+      this.workflow = workflow;
     }
 
     registerActivity(registerActivity){

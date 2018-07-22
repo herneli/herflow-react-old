@@ -1,19 +1,11 @@
-import { Component} from 'react';
-import './ActivityInitial.css';
+import ActivityChart from './ActivityInitial';
 import Image from '../../images/activity-initial-32.png';
-
-class Activity extends Component {
-    render() {
-        return (
-            this.props.manager.renderActivityBox(this.props)
-        );
-    }
-}
+import T from 'i18n-react';
 
 export default {
     type: "Initial",
-    name: 'Initial',
+    name: T.translate('activity.initial'),
     image: Image,
     excludeSelector: true,
-    ActivityChart: Activity
+    ActivityChart
 }

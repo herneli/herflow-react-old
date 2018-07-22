@@ -4,12 +4,13 @@ import ZoomSelector from '../common/ZoomSelector';
 import _ from 'lodash';
 import './Workflow.css';
 
+
 class Workflow extends Component {
   constructor(props) {
     super(props);
     this.handleOnChangeMainActivity = this.handleOnChangeMainActivity.bind(this);
     this.handleResize = this.handleResize.bind(this);
-    this.manager = new WorkflowManager();
+    this.manager = new WorkflowManager(this.props.workflow);
     this.state = { zoom: 1 };
   }
 
@@ -20,6 +21,14 @@ class Workflow extends Component {
     window.addEventListener("resize", this.handleResize);
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.workflow !== this.props.workflow){
+      this.manager.workflow = nextProps.workflow;
+    }
+  }
+  
+  
+
   componentDidUpdate(prevProps, prevState) {
     this.repaint();
   }
@@ -28,6 +37,7 @@ class Workflow extends Component {
     this.repaint();
   }
 
+  
   repaint(){
     if (this.props.workflow) {
       this.manager.resetJsPlumb();
