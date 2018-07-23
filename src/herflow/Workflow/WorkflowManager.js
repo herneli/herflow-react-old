@@ -93,6 +93,15 @@ class WorkflowManager {
       }
     }    
 
+    getActivityValidator(activity){
+      const activityRegistry = _.find(this.activities,{type: activity.type});
+      if (activityRegistry){
+        return activityRegistry.validate;
+      } else {
+        throw Error("Activity validator for " + activity.type + " not found");
+      }
+    }      
+
     renderActivityBox(props){
       return (      
         <ActivityBox 

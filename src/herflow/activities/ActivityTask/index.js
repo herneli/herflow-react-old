@@ -15,6 +15,7 @@ const validate = (manager, activity) => {
   const errors = [];
   if (!activity.name) {
     errors.push({
+      field: "name",
       message: T.translate('required')
     });
   }

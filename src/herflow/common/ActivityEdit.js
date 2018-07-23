@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import T from 'i18n-react';
-import _ from 'lodash';
 
 const styles = {
   appBar: {
@@ -31,7 +30,7 @@ class ActivityEdit extends React.Component {
     super(props);
 
     // State
-    this.state = { activity: this.props.activity };
+    this.state = { activity: this.props.activity, errors: null };
 
     // Bindings
     this.handleOnChange = this.handleOnChange.bind(this);
@@ -41,13 +40,14 @@ class ActivityEdit extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.activity !== nextProps.activity) {
-      this.setState({ activity: nextProps.activity })
+      this.setState({ activity: nextProps.activity, errors: null })
     }
   }
 
-  handleOnChange(field, value) {
+  handleOnChange(activity) {
     this.setState({
-      activity: _.assign({}, this.state.activity, { [field]: value })
+      activity: activity,
+      errors: null,
     });
   }
 
@@ -56,7 +56,14 @@ class ActivityEdit extends React.Component {
   }
 
   handleOnSave(){
-    this.props.onClose && this.props.onClose(this.state.activity);
+    const validate =  this.props.manager.getActivityValidator(this.state.activity);
+    let errors = validate(this.props.manager, this.state.activity);
+    if (errors)
+    {
+      this.setState({errors: errors});
+    } else {
+      this.props.onClose && this.props.onClose(this.state.activity);
+    }
   }
 
   getEditor(){
@@ -67,9 +74,9 @@ class ActivityEdit extends React.Component {
     return (
       <ActivityEditor 
         manager={this.props.manager}
-        activity={this.props.activity}
-        onClose={this.handleOnClose} 
-        onSave={this.handleOnSave} />
+        activity={this.state.activity}
+        errors={this.state.errors}
+        onChange={this.handleOnChange} />
     );
   }
   
