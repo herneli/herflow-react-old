@@ -84,13 +84,22 @@ class WorkflowManager {
       }
     }
 
+    getActivityEditor(activity){
+      const activityRegistry = _.find(this.activities,{type: activity.type});
+      if (activityRegistry){
+        return activityRegistry.ActivityEditor;
+      } else {
+        throw Error("Activity " + activity.type + " not found");
+      }
+    }    
+
     renderActivityBox(props){
       return (      
         <ActivityBox 
+          manager={props.manager}
           workflow={props.workflow}
           activity={props.activity}
           onCut={props.onCut}
-          onEdit={props.onEdit}
           onChange={props.onChange} />
       );
     }

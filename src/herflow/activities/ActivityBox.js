@@ -15,6 +15,7 @@ class ActivityBox extends Component {
     this.state = {
       menuOpen: false,
       anchorEl: null,
+      edit: false
     };
     // Bindings
     this.handleMenuClick = this.handleMenuClick.bind(this);
@@ -34,8 +35,7 @@ class ActivityBox extends Component {
         this.props.onCut && this.props.onCut(this.props.activity);
         break;
       case 'edit':
-        this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null }));
-        this.props.onEdit && this.props.onEdit();
+        this.setState(_.assign({},this.state,{ menuOpen: false, anchorEl: null, edit: true }));
         break;
       default:
         // Nothing
@@ -91,6 +91,7 @@ class ActivityBox extends Component {
 
   render() {
     let activityStatusClass = this.getActivityStatusClass();
+    let ActivityEditor = this.props.manager.getActivityEditor(this.props.activity);
     return (
       <div
         id={"activity-" + this.props.activity.id}
@@ -123,7 +124,14 @@ class ActivityBox extends Component {
             >
               <MenuItem onClick={() => this.handleMenuSelected("edit")}><T.span text="edit" /></MenuItem>
               {this.showCutMenu() ? <MenuItem onClick={() => this.handleMenuSelected("cut")}><T.span text="cut" /></MenuItem> : null}
-            </Menu>       
+            </Menu>     
+            {this.state.edit && ActivityEditor ?    
+              
+            <ActivityEditor 
+              open={this.state.edit}
+              activity={this.props.activity}
+              onClose={this.handleOnEditClose}
+            />: null }              
           </div> 
       </div>
     );
