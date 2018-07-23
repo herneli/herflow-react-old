@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ActivityParallel from '../ActivityParallel';
-import './ActivityBranch.css';
+import './ActivityLoop.css';
 
-class ActivityBranch extends Component {
+class ActivityLoop extends Component {
   render() {
     return (
       <ActivityParallel {...this.props} />
@@ -10,5 +10,5 @@ class ActivityBranch extends Component {
   }
 }
 
-export default ActivityBranch;
+export default ActivityLoop;
 

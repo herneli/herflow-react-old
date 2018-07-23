@@ -91,9 +91,25 @@ class WorkflowManager {
           activity={props.activity}
           onCut={props.onCut}
           onEdit={props.onEdit}
-          onChange={props.onChange}/>
+          onChange={props.onChange} />
       );
     }
+
+    renderChildrenActivities(activityNode){
+      let childrenActivities = activityNode.props.activity.childrenActivities || [];
+      return childrenActivities.map((activity) => {
+        let ActivityChart = this.getActivityChart(activity);
+        return (
+          <td key={activity.id}>
+            <ActivityChart
+              manager={this}
+              workflow={activityNode.props.workflow}
+              activity={activity}
+              onChange={this.handleOnChangeChildren.bind(activityNode)} />  
+          </td>
+        );
+      });
+    }    
 
     generateActivity(type) {
       const activityRegistry = _.find(this.activities,{type: type});
@@ -110,12 +126,12 @@ class WorkflowManager {
     }
 
     handleOnChangeChildren(activity) {
-      let children = this.getChildrenActivities();
-      let index = _.findIndex(children, { "id": activity.id });
+      let childrenActivities = this.props.activity.childrenActivities || [];
+      let index = _.findIndex(childrenActivities, { "id": activity.id });
       let newChildren = [
-        ...children.slice(0, index),
+        ...childrenActivities.slice(0, index),
         activity,
-        ...children.slice(index + 1)
+        ...childrenActivities.slice(index + 1)
       ];
       let newActivity = _.assign({}, this.props.activity, { childrenActivities: newChildren });
     
@@ -148,7 +164,7 @@ class WorkflowManager {
       return returnNode;      
     }
 
-    createConnectionsParallel(activity){
+    createConnectionsParallel(activity, loop){
       let activityId = 'activity-' + activity.id;    
       let finalPointId = activityId + "-final";
           
@@ -157,7 +173,7 @@ class WorkflowManager {
           let parallelNode = this.createConnections(childrenActivity);
           this.connect(activityId, parallelNode.initial);
           this.connect(parallelNode.final, finalPointId);
-          if (activity.type ==="Loop"){
+          if (loop){
             let loopBackId = activityId + "-loop-back";
             this.connect(finalPointId, loopBackId,{anchor: "Left"});
             this.connect(loopBackId,activityId,{anchor: "Left", overlays: [["Arrow", arrowOverlay]]});

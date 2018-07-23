@@ -1,7 +1,9 @@
-import React from 'react';
+import {
+  Component
+} from 'react';
 import './ActivityTask.css';
 
-class ActivityTask extends React.Component {
+class ActivityTask extends Component {
   render() {
     return (
       this.props.manager.renderActivityBox(this.props)
