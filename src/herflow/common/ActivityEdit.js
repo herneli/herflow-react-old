@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import T from 'i18n-react';
+import _ from 'lodash';
 
 const styles = {
   appBar: {
@@ -24,10 +26,59 @@ function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
-class ActivityEditor extends React.Component {
+class ActivityEdit extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // State
+    this.state = { activity: this.props.activity };
+
+    // Bindings
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnClose = this.handleOnClose.bind(this);
+    this.handleOnSave = this.handleOnSave.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.activity !== nextProps.activity) {
+      this.setState({ activity: nextProps.activity })
+    }
+  }
+
+  handleOnChange(field, value) {
+    this.setState({
+      activity: _.assign({}, this.state.activity, { [field]: value })
+    });
+  }
+
+  handleOnClose(){
+    this.props.onClose && this.props.onClose(null);
+  }
+
+  handleOnSave(){
+    this.props.onClose && this.props.onClose(this.state.activity);
+  }
+
+  getEditor(){
+    const ActivityEditor =  this.props.manager.getActivityEditor(this.props.activity);
+    if (!ActivityEditor){
+      return null;
+    }
+    return (
+      <ActivityEditor 
+        manager={this.props.manager}
+        activity={this.props.activity}
+        onClose={this.handleOnClose} 
+        onSave={this.handleOnSave} />
+    );
+  }
+  
+
   render() {
     const { classes } = this.props;
-
+    if (!this.props.open) {
+      return null;
+    }
     return (
       <Dialog
         fullScreen
@@ -51,11 +102,16 @@ class ActivityEditor extends React.Component {
         </AppBar>
         <Grid container>
           <Grid item xs={12}>
-            {this.props.children}
+            {this.getEditor()}
           </Grid>
         </Grid>
       </Dialog>
     );
   }
 }
-export default withStyles(styles)(ActivityEditor);
+
+ActivityEdit.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ActivityEdit);

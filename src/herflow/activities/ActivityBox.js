@@ -5,6 +5,7 @@ import DotsVerticalIcon from 'mdi-react/DotsVerticalIcon';
 import Menu from '@material-ui/core/Menu';
 import MenuItem  from '@material-ui/core/MenuItem';
 import AlertDecagram from 'mdi-react/AlertDecagramIcon';
+import ActivityEdit from '../common/ActivityEdit';
 import _ from 'lodash';
 import T from 'i18n-react';
 import './Activity.css';
@@ -91,7 +92,6 @@ class ActivityBox extends Component {
 
   render() {
     let activityStatusClass = this.getActivityStatusClass();
-    let ActivityEditor = this.props.manager.getActivityEditor(this.props.activity);
     return (
       <div
         id={"activity-" + this.props.activity.id}
@@ -125,13 +125,13 @@ class ActivityBox extends Component {
               <MenuItem onClick={() => this.handleMenuSelected("edit")}><T.span text="edit" /></MenuItem>
               {this.showCutMenu() ? <MenuItem onClick={() => this.handleMenuSelected("cut")}><T.span text="cut" /></MenuItem> : null}
             </Menu>     
-            {this.state.edit && ActivityEditor ?    
-              
-            <ActivityEditor 
-              open={this.state.edit}
-              activity={this.props.activity}
-              onClose={this.handleOnEditClose}
-            />: null }              
+            {this.state.edit ?      
+              <ActivityEdit 
+                open={this.state.edit}
+                manager={this.props.manager}
+                activity={this.props.activity}
+                onClose={this.handleOnEditClose}
+            />: null }            
           </div> 
       </div>
     );

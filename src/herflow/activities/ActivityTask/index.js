@@ -1,5 +1,5 @@
-import React from 'react';
 import ActivityChart from './ActivityTask';
+import ActivityEditor from './ActivityTaskEditor';
 import Image from '../../images/activity-task-32.png';
 import T from 'i18n-react';
 
@@ -21,15 +21,7 @@ const validate = (manager, activity) => {
   return errors.length > 0 ? errors : null;
 }
 
-class ActivityEditor extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>HelloWorld</h1>
-      </div>
-    );
-  }
-}
+
 
 export default {
   type: "Task",
