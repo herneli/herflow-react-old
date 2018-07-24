@@ -43,11 +43,11 @@ class Form extends Component {
 
   render() {
     return (
-      <Paper className="hf-activity-wrapper">
+      // <Paper className="hf-activity-wrapper">
         <Grid container>
           {this.renderFields()}
         </Grid>
-    </Paper>
+    // </Paper>
     );
   }
 }

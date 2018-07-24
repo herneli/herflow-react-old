@@ -6,6 +6,7 @@ class FormText extends Component {
     let message = this.props.errors &&  this.props.errors[this.props.field.name] ? this.props.errors[this.props.field.name] : null;
     return (
       <TextField
+        required={this.props.field.required}
         error={message !== null}
         value={this.props.value}
         label={this.props.field.label} fullWidth

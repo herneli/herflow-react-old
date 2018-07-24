@@ -18,7 +18,8 @@ const form = {
     {
       name: "name",
       label: T.translate("activity.name"),
-      type: "string"
+      type: "string",
+      required: true
     }
   ]
 }

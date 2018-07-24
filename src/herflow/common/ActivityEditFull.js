@@ -12,10 +12,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Form from '../form/Form';
 import T from 'i18n-react';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 const styles = {
   appBar: {
@@ -98,25 +94,30 @@ class ActivityEdit extends React.Component {
     }
     return (
       <Dialog
+        fullScreen
         open={this.props.open}
         TransitionComponent={Transition}
+        className={"hf-dialog-full"}
       >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-          <DialogContent>
-          <Grid container>
+
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton color="inherit" onClick={this.handleOnClose} aria-label="Close">
+              <CloseIcon />
+            </IconButton>
+            <Typography type="title" color="inherit" className={classes.flex}>
+              {this.props.activity.name}
+            </Typography>
+            <Button color="inherit" onClick={this.handleOnSave}>
+              <T.span text="save" />
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <Grid container>
           <Grid item xs={12}>
-              {this.getEditor()}
-            </Grid>
+            {this.getEditor()}
           </Grid>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleOnClose} color="primary">
-              Cancelar
-            </Button>
-            <Button onClick={this.handleOnSave} color="primary">
-              Guardar
-            </Button>
-          </DialogActions>
+        </Grid>
       </Dialog>
     );
   }
