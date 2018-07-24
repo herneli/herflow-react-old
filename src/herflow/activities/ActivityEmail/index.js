@@ -7,9 +7,9 @@ export default {
   name: 'activity.email',
   image: Image,
   ActivityChart,
-  generateActivity: (manager) => {
+  generateActivity: (workflowManager) => {
     return {
-      id: manager.newId(),
+      id: workflowManager.newId(),
       name: T.translate("activity.newEmail"),
       type: 'Email'
     }

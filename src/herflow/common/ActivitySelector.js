@@ -11,7 +11,7 @@ import ImageClipboard from '../images/clipboard.png';
 class ActivitySelector extends Component {
   getActivities(){
     let activities = [];
-    if (this.props.manager.getActivityClipboard()){
+    if (this.props.workflowManager.getActivityClipboard()){
       activities.push({
         type: "clipboard", 
         image: ImageClipboard,
@@ -19,7 +19,7 @@ class ActivitySelector extends Component {
       });
     }
     activities = activities.concat(
-      this.props.manager.getSelectableActivities()
+      this.props.workflowManager.getSelectableActivities()
     )
     return activities;
   }

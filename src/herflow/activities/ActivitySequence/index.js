@@ -13,7 +13,7 @@ class ActivitySequence extends Component {
     // Bindings
     this.handleInsertActivity = this.handleInsertActivity.bind(this);
     this.handleCloseSelector = this.handleCloseSelector.bind(this);
-    this.handleOnChangeChildren = this.props.manager.handleOnChangeChildren.bind(this);
+    this.handleOnChangeChildren = this.props.workflowManager.handleOnChangeChildren.bind(this);
     this.handleOnCut = this.handleOnCut.bind(this);
   }
 
@@ -30,9 +30,9 @@ class ActivitySequence extends Component {
       let addedActivity;
       let children = this.getChildrenActivities();
       if (activity.type === 'clipboard'){
-        addedActivity = this.props.manager.getActivityClipboard();
+        addedActivity = this.props.workflowManager.getActivityClipboard();
       }else{
-        addedActivity = this.props.manager.generateActivity(activity.type);
+        addedActivity = this.props.workflowManager.generateActivity(activity.type);
       }
       
       let newActivity = _.assign({}, this.props.activity, {
@@ -45,7 +45,7 @@ class ActivitySequence extends Component {
       this.props.onChange && this.props.onChange(newActivity);
 
       if (activity.type === 'clipboard'){
-        this.props.manager.setActivityClipboard(null);
+        this.props.workflowManager.setActivityClipboard(null);
       }
     }
     this.setState({ insertDialog: false });
@@ -61,7 +61,7 @@ class ActivitySequence extends Component {
         ...children.slice(activityIndex+1, children.length)
       ]
     });
-    this.props.manager.setActivityClipboard(activity);
+    this.props.workflowManager.setActivityClipboard(activity);
     this.props.onChange && this.props.onChange(newActivity);
   }
 
@@ -81,12 +81,12 @@ class ActivitySequence extends Component {
       );
     }
     childrenActivities.forEach((activity, index) => {
-      const ActivityChart = this.props.manager.getActivityChart(activity);
+      const ActivityChart = this.props.workflowManager.getActivityChart(activity);
       returnNodes.push(
         <tr key={activity.id}>
           <td>
             <ActivityChart
-              manager={this.props.manager}
+              workflowManager={this.props.workflowManager}
               workflow={this.props.workflow}
               activity={activity}
               onChange={this.handleOnChangeChildren} 
@@ -126,7 +126,7 @@ class ActivitySequence extends Component {
         </table>
         <AcitivitySelector
           open={this.state.insertDialog}
-          manager={this.props.manager}
+          workflowManager={this.props.workflowManager}
           activityClipboard={this.props.activityClipboard}
           onClose={this.handleCloseSelector} />
       </div>

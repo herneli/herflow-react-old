@@ -11,6 +11,7 @@ import ActivityLoop from '../activities/ActivityLoop';
 import ActivityCondition from '../activities/ActivityCondition';
 import { ObjectID } from 'bson';
 import _ from 'lodash';
+import FormManager from '../form/FormManager';
 
 const arrowOverlay = {
   width: 6, 
@@ -84,28 +85,19 @@ class WorkflowManager {
       }
     }
 
-    getActivityEditor(activity){
+    getActivityFormManager(activity){
       const activityRegistry = _.find(this.activities,{type: activity.type});
-      if (activityRegistry){
-        return activityRegistry.ActivityEditor;
+      if (activityRegistry.form){
+        return new FormManager(activityRegistry.form);
       } else {
-        throw Error("Activity " + activity.type + " not found");
+        return null;
       }
-    }    
-
-    getActivityValidator(activity){
-      const activityRegistry = _.find(this.activities,{type: activity.type});
-      if (activityRegistry){
-        return activityRegistry.validate;
-      } else {
-        throw Error("Activity validator for " + activity.type + " not found");
-      }
-    }      
+    }       
 
     renderActivityBox(props){
       return (      
         <ActivityBox 
-          manager={props.manager}
+          workflowManager={props.workflowManager}
           workflow={props.workflow}
           activity={props.activity}
           onCut={props.onCut}
@@ -120,7 +112,7 @@ class WorkflowManager {
         return (
           <td key={activity.id}>
             <ActivityChart
-              manager={this}
+              workflowManager={this}
               workflow={activityNode.props.workflow}
               activity={activity}
               onChange={this.handleOnChangeChildren.bind(activityNode)} />  

@@ -3,15 +3,15 @@ import ActivityChart from './ActivityTask';
 import Image from '../../images/activity-task-32.png';
 import T from 'i18n-react';
 
-const generateActivity = (manager) => {
+const generateActivity = (workflowManager) => {
   return {
-    id: manager.newId(),
+    id: workflowManager.newId(),
     name: T.translate("activity.newTask"),
     type: 'Task'
   }
 }
 
-const validate = (manager, activity) => {
+const validate = (workflowManager, activity) => {
   const errors = [];
   if (!activity.name) {
     errors.push({

@@ -24,6 +24,7 @@
     "selectActivity": "Seleccionar actividad"
   },
   "activity": {
+    "name": "Nombre",
     "task": "Tarea",
     "newTask": "Nueva tarea",
     "branch": "Ejecución paralela",

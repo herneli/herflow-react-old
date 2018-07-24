@@ -7,17 +7,17 @@ export default {
   name: 'activity.loop',
   image: Image,
   ActivityChart,
-  createConnections(manager, activity) {
-    return manager.createConnectionsParallel(activity,true);
+  createConnections(workflowManager, activity) {
+    return workflowManager.createConnectionsParallel(activity,true);
   },
-  generateActivity: (manager) => {
+  generateActivity: (workflowManager) => {
     return {
-      id: manager.newId(),
+      id: workflowManager.newId(),
       name: T.translate("activity.newLoop"),
       type: "Loop",
       childrenActivities: [
         {
-          id: manager.newId(),
+          id: workflowManager.newId(),
           type: "Sequence",
           branchName: "loop",
         },

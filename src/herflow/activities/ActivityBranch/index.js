@@ -7,22 +7,22 @@ export default {
     name: 'activity.branch',
     image: Image,
     ActivityChart,
-    createConnections(manager, activity) {
-      return manager.createConnectionsParallel(activity);
+    createConnections(workflowManager, activity) {
+      return workflowManager.createConnectionsParallel(activity);
     },
-    generateActivity: (manager) => {
+    generateActivity: (workflowManager) => {
       return {
-        id: manager.newId(),
+        id: workflowManager.newId(),
         name: T.translate("activity.newBranch"),
         type: "Branch",
         childrenActivities: [
           {
-            id: manager.newId(),
+            id: workflowManager.newId(),
             type: "Sequence",
             label: T.translate("activity.branchNumber", { branchNumber: 1 })
           },
           {
-            id: manager.newId(),
+            id: workflowManager.newId(),
             type: "Sequence",
             label: T.translate("activity.branchNumber", { branchNumber: 2 })
           }

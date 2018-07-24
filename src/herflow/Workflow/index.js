@@ -10,7 +10,7 @@ class Workflow extends Component {
     super(props);
     this.handleOnChangeMainActivity = this.handleOnChangeMainActivity.bind(this);
     this.handleResize = this.handleResize.bind(this);
-    this.manager = new WorkflowManager(this.props.workflow);
+    this.workflowManager = new WorkflowManager(this.props.workflow);
     this.state = { zoom: 1 };
   }
 
@@ -22,8 +22,8 @@ class Workflow extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextProps.workflow !== this.props.workflow){
-      this.manager.workflow = nextProps.workflow;
+    if (nextProps.workflow !== this.workflowManager.workflow){
+      this.workflowManager.workflow = nextProps.workflow;
     }
   }
   
@@ -38,8 +38,8 @@ class Workflow extends Component {
   
   repaint(){
     if (this.props.workflow) {
-      this.manager.resetJsPlumb();
-      this.manager.createConnections(this.props.workflow.mainActivity);
+      this.workflowManager.resetJsPlumb();
+      this.workflowManager.createConnections(this.props.workflow.mainActivity);
     }
   }
 
@@ -52,7 +52,7 @@ class Workflow extends Component {
 
   render() {
     if (this.props.workflow){
-        const ActivityChart = this.manager.getActivityChart(this.props.workflow.mainActivity);
+        const ActivityChart = this.workflowManager.getActivityChart(this.props.workflow.mainActivity);
       return (
           <div>
             <ZoomSelector onSelected={this.handleZoomSelected} />
@@ -60,7 +60,7 @@ class Workflow extends Component {
             <div>
               <div id="workflow-canvas" style={{ zoom: this.state.zoom }}>
                 <ActivityChart
-                  manager={this.manager}
+                  workflowManager={this.workflowManager}
                   workflow={this.props.workflow}
                   activity={this.props.workflow.mainActivity}
                   onChange={this.handleOnChangeMainActivity} />

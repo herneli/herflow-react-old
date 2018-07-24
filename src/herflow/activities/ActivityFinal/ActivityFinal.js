@@ -7,7 +7,7 @@ import './ActivityFinal.css';
 class ActivityFinal extends Component {
   render() {
     return (
-      this.props.manager.renderActivityBox(this.props)
+      this.props.workflowManager.renderActivityBox(this.props)
     );
   }
 }

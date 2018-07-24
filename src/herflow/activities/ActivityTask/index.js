@@ -1,35 +1,33 @@
 import ActivityChart from './ActivityTask';
-import ActivityEditor from './ActivityTaskEditor';
 import Image from '../../images/activity-task-32.png';
 import T from 'i18n-react';
 
-const generateActivity = (manager) => {
+const generateActivity = (workflowManager) => {
   return {
-    id: manager.newId(),
+    id: workflowManager.newId(),
     name: T.translate("activity.newTask"),
     type: 'Task'
   }
 }
 
-const validate = (manager, activity) => {
-  const errors = [];
-  if (!activity.name) {
-    errors.push({
-      field: "name",
-      message: T.translate('required')
-    });
-  }
-  return errors.length > 0 ? errors : null;
+const form = {
+  validate: (value,context) => {
+    return null;
+  },
+  getFields: () => [
+    {
+      name: "name",
+      label: T.translate("activity.name"),
+      type: "string"
+    }
+  ]
 }
-
-
 
 export default {
   type: "Task",
   name: 'activity.task',
   image: Image,
   ActivityChart,
-  ActivityEditor,
   generateActivity,
-  validate
+  form
 }

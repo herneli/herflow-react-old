@@ -8,7 +8,7 @@ class ActivityParallel extends Component {
         <tbody>
           <tr>
             <td id={"activity-" + this.props.activity.id + "-loop-back"}>
-              {this.props.manager.renderActivityBox(this.props)}
+              {this.props.workflowManager.renderActivityBox(this.props)}
             </td>
           </tr>
           <tr>
@@ -16,7 +16,7 @@ class ActivityParallel extends Component {
               <table className="hf-workflow">
                 <tbody>
                   <tr>
-                    {this.props.manager.renderChildrenActivities(this)}
+                    {this.props.workflowManager.renderChildrenActivities(this)}
                   </tr>
                 </tbody>
               </table>

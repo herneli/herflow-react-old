@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import Form from '../form/Form';
 import T from 'i18n-react';
 
 const styles = {
@@ -36,9 +37,13 @@ class ActivityEdit extends React.Component {
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnClose = this.handleOnClose.bind(this);
     this.handleOnSave = this.handleOnSave.bind(this);
+
+    // Generate form maanger
+    this.formManager =  this.props.workflowManager.getActivityFormManager(this.props.activity);
   }
 
   componentWillReceiveProps(nextProps) {
+    this.formManager =  this.props.workflowManager.getActivityFormManager(this.props.activity);
     if (this.props.activity !== nextProps.activity) {
       this.setState({ activity: nextProps.activity, errors: null })
     }
@@ -56,25 +61,26 @@ class ActivityEdit extends React.Component {
   }
 
   handleOnSave(){
-    const validate =  this.props.manager.getActivityValidator(this.state.activity);
-    let errors = validate(this.props.manager, this.state.activity);
-    if (errors)
-    {
-      this.setState({errors: errors});
+    if (this.formManager === null){
+      this.props.onClose && this.props.onClose(null);  
+      return;
+    }
+    let errors = this.formManager.validate(this.state.activity,this.props.workflowManager);
+    if (errors){
+      this.setState({errors: errors });
     } else {
       this.props.onClose && this.props.onClose(this.state.activity);
     }
   }
 
   getEditor(){
-    const ActivityEditor =  this.props.manager.getActivityEditor(this.props.activity);
-    if (!ActivityEditor){
+    if (this.formManager === null){
       return null;
     }
     return (
-      <ActivityEditor 
-        manager={this.props.manager}
-        activity={this.state.activity}
+      <Form
+        formManager={this.formManager}
+        value={this.state.activity}
         errors={this.state.errors}
         onChange={this.handleOnChange} />
     );

@@ -128,7 +128,7 @@ class ActivityBox extends Component {
             {this.state.edit ?      
               <ActivityEdit 
                 open={this.state.edit}
-                manager={this.props.manager}
+                workflowManager={this.props.workflowManager}
                 activity={this.props.activity}
                 onClose={this.handleOnEditClose}
             />: null }            
