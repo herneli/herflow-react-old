@@ -24,6 +24,7 @@
     "selectActivity": "Seleccionar actividad"
   },
   "activity": {
+    "editTitle": "Modificar actividad",
     "name": "Nombre",
     "task": "Tarea",
     "newTask": "Nueva tarea",
@@ -38,12 +39,13 @@
     "conditionFalse": "No",
     "email": "Email",
     "newEmail": "e-Mail",
-    "clipboard": "Portapapeles" 
+    "clipboard": "Portapapeles"
   },
   "common": {
     "connecting": "Conectando...",
     "googleAuthentication": "Acceder mediante Google",
-    "loginText": "Pulsa el siguiente botón para acceder mediante tu cuenta de Google.",
+    "loginText":
+      "Pulsa el siguiente botón para acceder mediante tu cuenta de Google.",
     "unexpectedError": "Se ha producido un error inesperado"
   }
 }

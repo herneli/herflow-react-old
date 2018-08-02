@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReducers,compose } from 'redux';
-import { HashRouter as Router } from 'react-router-dom';
-import thunk from 'redux-thunk';
-import './index.css';
-import App from './components/App/App';
-import sessionReducer from './common/session/reducer';
-import workflowReducer from './components/Workflow/redux/reducer';
-import appReducer from './components/App/redux/reducer';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
+import { HashRouter as Router } from "react-router-dom";
+import thunk from "redux-thunk";
+import "./index.css";
+import App from "./components/App/App";
+import sessionReducer from "./common/session/reducer";
+import workflowReducer from "./components/Workflow/redux/reducer";
+import appReducer from "./components/App/redux/reducer";
 // Reducers
 let rootReducer = combineReducers({
   app: appReducer,
@@ -18,10 +18,8 @@ let rootReducer = combineReducers({
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-    rootReducer, 
-    composeEnhancers(
-    applyMiddleware(thunk)
-  )
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 ReactDOM.render(
@@ -29,4 +27,6 @@ ReactDOM.render(
     <Router>
       <App />
     </Router>
-</Provider>, document.getElementById('root'));
+  </Provider>,
+  document.getElementById("root")
+);

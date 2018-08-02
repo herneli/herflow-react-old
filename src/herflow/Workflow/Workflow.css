@@ -1,9 +1,9 @@
-#workflow-canvas{
+#workflow-canvas {
   position: relative;
-  /* text-align: center; */
+  text-align: center;
 }
 
-.hf-activity-wrapper{
+.hf-activity-wrapper {
   margin: 20px;
   padding: 20px;
 }
@@ -12,25 +12,24 @@
   background-color: #f1eeee;
 }
 
-table.hf-workflow{
+table.hf-workflow {
   border-collapse: separate;
   border-spacing: 0px;
   background-color: #f1eeee;
   display: inline-block;
 }
 
-table.hf-workflow.main{
+table.hf-workflow.main {
   padding: 0 20px;
 }
 
-td{
+td {
   vertical-align: top;
   text-align: center;
   padding: 0px;
   border-spacing: 0px;
 }
-tr{
+tr {
   padding: 0px;
   border-spacing: 0px;
 }
-
